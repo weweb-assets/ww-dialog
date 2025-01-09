@@ -105,7 +105,7 @@ export default {
             /* wwEditor:start */
             bindingValidation: {
                 type: 'string',
-                tooltip: 'A string matching one of the modal side types: "left", "middle" or "right".',
+                tooltip: 'A string matching one of the modal side types: "left", "middle", "right" or "custom".',
             },
             /* wwEditor:end */
             defaultValue: 'middle',
@@ -126,10 +126,14 @@ export default {
                 ],
             },
             defaultValue: '0%',
-            responsive: true,
+           /* wwEditor:start */
+            bindingValidation: {
+                type: 'string',
+                tooltip: 'A string representing the horizontal position of the dialog.',
+            },
+            /* wwEditor:end */
             bindable: true,
-            states: true,
-            classes: true,
+        },
         },
         sideSheet: {
             label: {
@@ -175,7 +179,7 @@ export default {
             /* wwEditor:start */
             bindingValidation: {
                 type: 'string',
-                tooltip: 'A string matching one of the modal alignment types: "top", "center" or "bottom".',
+                tooltip: 'A string matching one of the modal alignment types: "top", "center", "bottom" or "custom".',
             },
             /* wwEditor:end */
             defaultValue: 'center',
@@ -195,10 +199,13 @@ export default {
                 ],
             },
             defaultValue: '0%',
-            responsive: true,
+             /* wwEditor:start */
+             bindingValidation: {
+                type: 'string',
+                tooltip: 'A string representing the vertical position of the dialog.',
+            },
+            /* wwEditor:end */
             bindable: true,
-            states: true,
-            classes: true,
         },
         animation: {
             label: {
