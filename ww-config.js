@@ -126,14 +126,13 @@ export default {
                 ],
             },
             defaultValue: '0%',
-           /* wwEditor:start */
+            /* wwEditor:start */
             bindingValidation: {
                 type: 'string',
                 tooltip: 'A string representing the horizontal position of the dialog.',
             },
             /* wwEditor:end */
             bindable: true,
-        },
         },
         sideSheet: {
             label: {
@@ -199,10 +198,10 @@ export default {
                 ],
             },
             defaultValue: '0%',
-             /* wwEditor:start */
-             bindingValidation: {
+            /* wwEditor:start */
+            bindingValidation: {
                 type: 'string',
-                tooltip: 'A string representing the vertical position of the dialog.',
+                tooltip: 'A string representing the horizontal position of the dialog.',
             },
             /* wwEditor:end */
             bindable: true,
