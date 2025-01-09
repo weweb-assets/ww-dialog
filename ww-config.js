@@ -69,7 +69,7 @@ export default {
             section: 'style',
             options: {
                 options: [
-                    { value: 'dialog', label: { en: 'Dialog', fr: 'Dialog' } },
+                    { value: 'none', label: { en: 'None', fr: 'Aucun' } },
                     { value: 'modal', label: { en: 'Modal', fr: 'Modal' } },
                     { value: 'sheet', label: { en: 'Sheet', fr: 'Sheet' } },
                 ],
@@ -81,7 +81,7 @@ export default {
                 tooltip: "A string matching one of the dialog types: 'dialog', 'modal' or 'sheet'.",
             },
             /* wwEditor:end */
-            defaultValue: 'dialog',
+            defaultValue: 'modal',
             propertyHelp: {
                 tooltip:
                     'If set to "dialog", the dialog will be unpositioned. If set to "modal", the dialog will be displayed as a modal which can be placed in various positions. If set to "sheet", the dialog will be displayed as a full width or height element on a side of the screen.',
@@ -97,7 +97,7 @@ export default {
             options: {
                 options: [
                     { value: 'left', label: { en: 'Left', fr: 'Gauche' } },
-                    { value: 'middle', label: { en: 'Middle', fr: 'Milieu' } },
+                    { value: 'center', label: { en: 'Center', fr: 'Centre' } },
                     { value: 'right', label: { en: 'Right', fr: 'Droite' } },
                     { value: 'custom', label: { en: 'Custom', fr: 'Personnalisé' } },
                 ],
@@ -108,7 +108,7 @@ export default {
                 tooltip: 'A string matching one of the modal side types: "left", "middle", "right" or "custom".',
             },
             /* wwEditor:end */
-            defaultValue: 'middle',
+            defaultValue: 'center',
             hidden: content => content.type !== 'modal',
             bindable: true,
         },
@@ -302,7 +302,6 @@ export default {
             defaultValue: 'linear',
             bindable: true,
         },
-
         preventScroll: {
             label: {
                 en: 'Prevent Scrolling',
