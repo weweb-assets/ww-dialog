@@ -1,21 +1,16 @@
 <template>
     <div
         :style="{
-            '--transition-duration': animationDurationValue + 'ms',
-            '--transition-easing': animationEasing,
+            '--transition-duration': animationDuration,
+            '--transition-easing': content.animationEasing,
         }"
         role="dialog"
         class="ww-dialog"
         @keydown.esc="onEscapeKeyDown()"
     >
-        <wwElement v-if="trigger" v-bind="content.triggerElement" role="dialog" />
+        <wwElement v-if="content.trigger" v-bind="content.triggerElement" role="dialog" @click="onTriggerClick()" />
         <Transition mode="out-in" :name="transitionName">
-            <div
-                v-if="value"
-                :style="{
-                    'z-index': 1000,
-                }"
-            >
+            <div v-if="isOpen">
                 <wwElement
                     v-bind="content.contentElement"
                     role="dialog"
@@ -25,16 +20,31 @@
             </div>
         </Transition>
 
-        <Transition name="fade-transition" mode="out-in">
-            <div v-if="value && overlay">
-                <wwElement v-bind="content.overlayElement" class="ww-dialog-transition-root" role="dialog" />
+        <template v-if="isOpen">
+            <template v-if="!isEditing">
+                <div v-if="content.clickOutsideCloses" class="pointer-capture" @click.stop="closeDialog()"></div>
+                <div
+                    v-else-if="content.preventInteractionsOutside && !content.overlay && !content.overlayClickCloses"
+                    class="pointer-capture"
+                    @click.stop="null"
+                ></div>
+            </template>
+
+            <div v-if="overlay">
+                <wwElement
+                    ref="overlayElement"
+                    v-bind="content.overlayElement"
+                    role="dialog"
+                    @click="handleOverlayClick()"
+                />
             </div>
-        </Transition>
+        </template>
     </div>
 </template>
 
 <script>
-import { computed, provide, ref, toRef, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
+import { useDialogStyle } from './composables/useDialogStyle';
 
 export default {
     props: {
@@ -46,66 +56,74 @@ export default {
     },
     emits: ['trigger-event'],
     setup(props, { emit }) {
-        const type = toRef(() => props.content.type);
-        const sideModal = toRef(() => props.content.sideModal);
-        const sideSheet = toRef(() => props.content.sideSheet);
-        const align = toRef(() => props.content.align);
-        const animation = toRef(() => props.content.animation);
-        const animationDuration = toRef(() => props.content.animationDuration);
-        const animationEasing = toRef(() => props.content.animationEasing);
-        const modal = toRef(() => props.content.modal);
-        const preventScroll = toRef(() => props.content.preventScroll);
-        const trigger = toRef(() => props.content.trigger);
-        const overlay = toRef(() => props.content.overlay);
-        const escClose = toRef(() => props.content.escClose);
+        const { getModalStyle, getSheetStyle, getTransitionName } = useDialogStyle();
 
-        const { value: componentValue, setValue: setComponentValue } = wwLib.wwVariable.useComponentVariable({
+        const animationDuration = computed(() => {
+            return props.content.animationDuration + 'ms';
+        });
+
+        const transitionName = computed(() => {
+            return getTransitionName(props.content.animation, props.content.slideInDirection);
+        });
+
+        const { value: isOpen, setValue: setIsOpen } = wwLib.wwVariable.useComponentVariable({
             uid: props.uid,
-            name: 'value',
+            name: 'open',
             type: 'boolean',
             defaultValue: false,
             componentType: 'element',
         });
 
-        const value = computed({
-            get() {
-                return componentValue.value;
-            },
-            set(newValue) {
-                setComponentValue(newValue);
+        const setDialogState = newValue => {
+            setIsOpen(newValue);
 
-                if (newValue) {
-                    emit('trigger-event', {
-                        name: 'open',
-                        event: {
-                            value: newValue,
-                        },
-                    });
-                } else {
-                    emit('trigger-event', {
-                        name: 'close',
-                        event: {
-                            value: newValue,
-                        },
-                    });
-                }
-                emit('trigger-event', {
-                    name: 'change',
-                    event: {
-                        value: newValue,
-                    },
-                });
-            },
-        });
+            const eventName = newValue ? 'open' : 'close';
+            emit('trigger-event', {
+                name: eventName,
+                event: {
+                    open: newValue,
+                },
+            });
+
+            emit('trigger-event', {
+                name: 'change',
+                event: {
+                    open: newValue,
+                },
+            });
+        };
+
+        function toggleDialog() {
+            setDialogState(!isOpen.value);
+        }
+        function openDialog() {
+            setDialogState(true);
+        }
+
+        function closeDialog() {
+            setDialogState(false);
+        }
 
         watch(
-            () => props.content.value,
+            () => isOpen.value,
             v => {
-                value.value = v;
+                if (props.content.preventScroll && !isEditing.value) {
+                    const overflowValue = v ? 'hidden' : 'auto';
+                    wwLib.getFrontDocument().body.style.overflow = overflowValue;
+                    wwLib.getFrontDocument().documentElement.style.overflow = overflowValue;
+                }
             }
         );
 
-        wwLib.wwElement.useRegisterElementLocalContext('dialog', ref({ value }), {
+        const isEditing = computed(() => {
+            /* wwEditor:start */
+            return props.wwEditorState.editMode === wwLib.wwEditorHelper.EDIT_MODES.EDITION;
+            /* wwEditor:end */
+            // eslint-disable-next-line no-unreachable
+            return false;
+        });
+
+        wwLib.wwElement.useRegisterElementLocalContext('dialog', ref({ isOpen }), {
             toggleDialog: {
                 method: toggleDialog,
                 editor: {
@@ -129,170 +147,71 @@ export default {
             },
         });
 
-        const isEditing = computed(() => {
-            /* wwEditor:start */
-            return props.wwEditorState.editMode === wwLib.wwEditorHelper.EDIT_MODES.EDITION;
-            /* wwEditor:end */
-            // eslint-disable-next-line no-unreachable
-            return false;
-        });
-
-        function toggleDialog() {
-            value.value = !value.value;
-        }
-        function openDialog() {
-            value.value = true;
-        }
-        function closeDialog() {
-            value.value = false;
-        }
-
         const contentStyle = computed(() => {
             let style = {};
-            switch (type.value) {
+            switch (props.content.type) {
                 case 'modal':
-                    style = getModalStyle(sideModal.value, align.value);
+                    style = getModalStyle(
+                        props.content.sideModal,
+                        props.content.align,
+                        props.content.customPositionX,
+                        props.content.customPositionY
+                    );
                     break;
                 case 'sheet':
-                    style = getSheetStyle(sideSheet.value);
+                    style = getSheetStyle(props.content.sideSheet);
                     break;
-            }
-            if (preventScroll.value) {
-                style.overflow = 'hidden';
             }
             return style;
-        });
-
-        function getModalStyle(side, align) {
-            const style = {
-                position: 'fixed',
-            };
-
-            if (side === 'left') {
-                style.left = 0;
-            } else if (side === 'right') {
-                style.right = 0;
-            } else {
-                // Center horizontally
-                style.left = '50%';
-                style['--translate-x'] = '-50%';
-            }
-
-            if (align === 'top') {
-                style.top = 0;
-            } else if (align === 'bottom') {
-                style.bottom = 0;
-            } else {
-                style.top = '50%';
-                if (style.transform) {
-                    style['--translate-y'] = '-50%';
-                } else {
-                    style['--translate-y'] = '-50%';
-                }
-            }
-
-            return style;
-        }
-
-        function getSheetStyle(side) {
-            const style = {
-                position: 'fixed',
-            };
-
-            switch (side) {
-                case 'left':
-                    Object.assign(style, {
-                        height: '100dvh',
-                        top: 0,
-                        bottom: 0,
-                        left: 0,
-                    });
-                    break;
-                case 'right':
-                    Object.assign(style, {
-                        height: '100dvh',
-                        top: 0,
-                        bottom: 0,
-                        right: 0,
-                    });
-                    break;
-                case 'top':
-                    Object.assign(style, {
-                        width: '100dvw',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                    });
-                    break;
-                case 'bottom':
-                    Object.assign(style, {
-                        width: '100dvw',
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                    });
-                    break;
-            }
-
-            return style;
-        }
-
-        const transitionName = computed(() => {
-            switch (animation.value) {
-                case 'fade':
-                    return 'fade-transition';
-                case 'slide-in':
-                    return 'slide-in-transition';
-                case 'zoom':
-                    return 'zoom-transition';
-                default:
-                    return '';
-            }
-        });
-
-        const animationDurationValue = computed(() => {
-            return Number(animationDuration.value) || 300;
         });
 
         function onEscapeKeyDown() {
-            if (isEditing.value || !escClose.value) {
+            if (isEditing.value || !props.content.escClose) {
                 return;
             }
-
             closeDialog();
         }
 
-        provide('weweb-assets/ww-dialog-root', {
-            openDialog,
-            closeDialog,
-            toggleDialog,
-            value,
-            animation,
-            animationDuration,
-            isEditing,
-        });
+        function handleOverlayClick() {
+            if (props.content.overlayClickCloses && !isEditing.value) {
+                closeDialog();
+            }
+        }
+
+        function handleOutsideClick() {
+            if (props.content.clickOutsideCloses && !isEditing.value) {
+                closeDialog();
+            }
+        }
+
+        function onTriggerClick() {
+            if (!props.content.triggerClickOpens || isEditing.value) {
+                return;
+            }
+
+            toggleDialog();
+        }
 
         return {
             toggleDialog,
             openDialog,
             closeDialog,
             contentStyle,
-            escClose,
-            trigger,
-            value,
+            isOpen,
             transitionName,
-            animationDurationValue,
-            overlay,
+            animationDuration,
             isEditing,
             onEscapeKeyDown,
-            animationEasing,
+            handleOverlayClick,
+            onTriggerClick,
+            handleOutsideClick,
         };
     },
 };
 </script>
 
-<style lang="scss" scoped>
-:deep(.ww-dialog-transition-root) {
+<style lang="scss">
+.ww-dialog-transition-root {
     --translate-x: 0px;
     --translate-y: 0px;
     --translate-x-offset: 0px;
@@ -307,34 +226,99 @@ export default {
 }
 
 /* Fade Animation */
-.fade-transition-enter-from > :deep(.ww-dialog-transition-root),
-.fade-transition-leave-to > :deep(.ww-dialog-transition-root) {
+.fade-transition-enter-from .ww-dialog-transition-root,
+.fade-transition-leave-to .ww-dialog-transition-root {
     opacity: 0;
 }
-/* Slide-in Animation */
-.slide-in-transition-enter-from > :deep(.ww-dialog-transition-root) {
+
+/* Slide-in left Animation */
+.slide-in-left-transition-enter-from .ww-dialog-transition-root {
     --translate-x-offset: -20px;
     opacity: 0;
 }
-.slide-in-transition-enter-to > :deep(.ww-dialog-transition-root) {
+.slide-in-left-transition-enter-to .ww-dialog-transition-root {
     --translate-x-offset: 0;
     opacity: 1;
 }
-.slide-in-transition-leave-from > :deep(.ww-dialog-transition-root) {
+.slide-in-left-transition-leave-from .ww-dialog-transition-root {
     --translate-x-offset: 0;
     opacity: 1;
 }
-.slide-in-transition-leave-to > :deep(.ww-dialog-transition-root) {
+.slide-in-left-transition-leave-to .ww-dialog-transition-root {
     --translate-x-offset: -20px;
     opacity: 0;
 }
+
+/* Slide-in right Animation */
+.slide-in-right-transition-enter-from .ww-dialog-transition-root {
+    --translate-x-offset: 20px;
+    opacity: 0;
+}
+.slide-in-right-enter-to .ww-dialog-transition-root {
+    --translate-x-offset: 0;
+    opacity: 1;
+}
+.slide-in-right-transition-leave-from .ww-dialog-transition-root {
+    --translate-x-offset: 0;
+    opacity: 1;
+}
+.slide-in-right-transition-leave-to .ww-dialog-transition-root {
+    --translate-x-offset: 20px;
+    opacity: 0;
+}
+
+/* Slide-in top Animation */
+.slide-in-top-transition-enter-from .ww-dialog-transition-root {
+    --translate-y-offset: -20px;
+    opacity: 0;
+}
+.slide-in-top-enter-to .ww-dialog-transition-root {
+    --translate-y-offset: 0;
+    opacity: 1;
+}
+.slide-in-top-transition-leave-from .ww-dialog-transition-root {
+    --translate-y-offset: 0;
+    opacity: 1;
+}
+.slide-in-top-transition-leave-to .ww-dialog-transition-root {
+    --translate-y-offset: -20px;
+    opacity: 0;
+}
+
+/* Slide-in bottom Animation */
+.slide-in-bottom-transition-enter-from .ww-dialog-transition-root {
+    --translate-y-offset: 20px;
+    opacity: 0;
+}
+.slide-in-bottom-enter-to .ww-dialog-transition-root {
+    --translate-y-offset: 0;
+    opacity: 1;
+}
+.slide-in-bottom-transition-leave-from .ww-dialog-transition-root {
+    --translate-y-offset: 0;
+    opacity: 1;
+}
+.slide-in-bottom-transition-leave-to .ww-dialog-transition-root {
+    --translate-y-offset: 20px;
+    opacity: 0;
+}
+
 /* Zoom Animation */
-.zoom-transition-enter-from > :deep(.ww-dialog-transition-root),
-.zoom-transition-leave-to > :deep(.ww-dialog-transition-root) {
+.zoom-transition-enter-from .ww-dialog-transition-root,
+.zoom-transition-leave-to .ww-dialog-transition-root {
     --scale: 0;
 }
-.zoom-transition-enter-to > :deep(.ww-dialog-transition-root),
-.zoom-transition-leave-from > :deep(.ww-dialog-transition-root) {
+.zoom-transition-enter-to .ww-dialog-transition-root,
+.zoom-transition-leave-from .ww-dialog-transition-root {
     --scale: 1;
+}
+
+.pointer-capture {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100dvw;
+    height: 100dvh;
+    pointer-events: auto;
 }
 </style>
