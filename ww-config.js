@@ -78,13 +78,13 @@ export default {
             /* wwEditor:start */
             bindingValidation: {
                 type: 'string',
-                tooltip: "A string matching one of the dialog types: 'dialog', 'modal' or 'sheet'.",
+                tooltip: "A string matching one of the dialog types: 'none', 'modal' or 'sheet'.",
             },
             /* wwEditor:end */
             defaultValue: 'modal',
             propertyHelp: {
                 tooltip:
-                    'If set to "dialog", the dialog will be unpositioned. If set to "modal", the dialog will be displayed as a modal which can be placed in various positions. If set to "sheet", the dialog will be displayed as a full width or height element on a side of the screen.',
+                    'If set to "none", the dialog will be unpositioned. If set to "modal", the dialog will be displayed as a modal which can be placed in various positions. If set to "sheet", the dialog will be displayed as a full width or height element on a side of the screen.',
             },
         },
         sideModal: {
@@ -105,7 +105,7 @@ export default {
             /* wwEditor:start */
             bindingValidation: {
                 type: 'string',
-                tooltip: 'A string matching one of the modal side types: "left", "middle", "right" or "custom".',
+                tooltip: 'A string matching one of the modal side types: "left", "center", "right" or "custom".',
             },
             /* wwEditor:end */
             defaultValue: 'center',
