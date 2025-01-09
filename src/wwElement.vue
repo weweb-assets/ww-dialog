@@ -30,14 +30,14 @@
                 ></div>
             </template>
 
-            <div v-if="overlay">
+            <template v-if="content.overlay">
                 <wwElement
                     ref="overlayElement"
                     v-bind="content.overlayElement"
                     role="dialog"
                     @click="handleOverlayClick()"
                 />
-            </div>
+            </template>
         </template>
     </div>
 </template>
