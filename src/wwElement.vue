@@ -117,6 +117,13 @@ export default {
             }
         }
 
+        function onEscapeKeyDown() {
+            if (isEditing.value || !props.content.escClose) {
+                return;
+            }
+            closeDialog();
+        }
+
         watch(
             () => isOpen.value,
             newValue => {
@@ -182,14 +189,6 @@ export default {
             }
             return style;
         });
-
-        function onEscapeKeyDown() {
-            console.log('test');
-            if (isEditing.value || !props.content.escClose) {
-                return;
-            }
-            closeDialog();
-        }
 
         function handleOverlayClick() {
             if (props.content.overlayClickCloses && !isEditing.value) {
