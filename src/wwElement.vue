@@ -6,7 +6,6 @@
         }"
         role="dialog"
         class="ww-dialog"
-        @keydown.esc="onEscapeKeyDown()"
     >
         <wwElement v-if="content.trigger" v-bind="content.triggerElement" role="dialog" @click="onTriggerClick()" />
         <Transition mode="out-in" :name="transitionName">
@@ -43,7 +42,7 @@
 </template>
 
 <script>
-import { computed, ref, watch } from 'vue';
+import { computed, ref, watch, onUnmounted } from 'vue';
 import { useDialogStyle } from './composables/useDialogStyle';
 
 export default {
@@ -104,13 +103,32 @@ export default {
             setDialogState(false);
         }
 
+        function addEscapeListener() {
+            document.addEventListener('keydown', handleEscapeKey);
+        }
+
+        function removeEscapeListener() {
+            document.removeEventListener('keydown', handleEscapeKey);
+        }
+
+        function handleEscapeKey(event) {
+            if (event.key === 'Escape') {
+                onEscapeKeyDown();
+            }
+        }
+
         watch(
             () => isOpen.value,
-            v => {
+            newValue => {
                 if (props.content.preventScroll && !isEditing.value) {
-                    const overflowValue = v ? 'hidden' : 'auto';
+                    const overflowValue = newValue ? 'hidden' : 'auto';
                     wwLib.getFrontDocument().body.style.overflow = overflowValue;
                     wwLib.getFrontDocument().documentElement.style.overflow = overflowValue;
+                }
+                if (newValue) {
+                    addEscapeListener();
+                } else {
+                    removeEscapeListener();
                 }
             }
         );
@@ -192,6 +210,10 @@ export default {
 
             toggleDialog();
         }
+
+        onUnmounted(() => {
+            removeEscapeListener();
+        });
 
         return {
             toggleDialog,
