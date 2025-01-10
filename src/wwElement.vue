@@ -152,21 +152,21 @@ export default {
             toggleDialog: {
                 method: toggleDialog,
                 editor: {
-                    label: 'Toggle dialog state',
+                    label: 'Toggle',
                     description: 'Toggle the dialog state.',
                 },
             },
             openDialog: {
                 method: openDialog,
                 editor: {
-                    label: 'Open dialog',
+                    label: 'Open',
                     description: 'Open the dialog.',
                 },
             },
             closeDialog: {
                 method: closeDialog,
                 editor: {
-                    label: 'Close dialog',
+                    label: 'Close',
                     description: 'Close the dialog.',
                 },
             },
