@@ -104,11 +104,11 @@ export default {
         }
 
         function addEscapeListener() {
-            document.addEventListener('keydown', handleEscapeKey);
+            wwLib.getFrontDocument().addEventListener('keydown', handleEscapeKey);
         }
 
         function removeEscapeListener() {
-            document.removeEventListener('keydown', handleEscapeKey);
+            wwLib.getFrontDocument().removeEventListener('keydown', handleEscapeKey);
         }
 
         function handleEscapeKey(event) {
