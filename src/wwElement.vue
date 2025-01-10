@@ -166,6 +166,7 @@ export default {
         });
 
         function onEscapeKeyDown() {
+            console.log('test');
             if (isEditing.value || !props.content.escClose) {
                 return;
             }
