@@ -39,15 +39,15 @@ export default {
     ],
     actions: [
         {
-            label: 'Toggle dialog',
+            label: 'Toggle',
             action: 'toggleDialog',
         },
         {
-            label: 'Open dialog',
+            label: 'Open',
             action: 'openDialog',
         },
         {
-            label: 'Close dialog',
+            label: 'Close',
             action: 'closeDialog',
         },
     ],
@@ -56,7 +56,7 @@ export default {
             type: 'Button',
             editorOnly: true,
             options: {
-                text: { en: 'Toggle dialog' },
+                text: { en: 'Toggle' },
                 action: 'toggleDialog',
             },
         },
