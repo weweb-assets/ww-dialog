@@ -243,8 +243,8 @@ export default {
     --calc-translate-y: calc(var(--translate-y) + var(--translate-y-offset));
     transition: transform var(--transition-duration) var(--transition-easing),
         opacity var(--transition-duration) var(--transition-easing) !important;
-    transform: translateX(var(--calc-translate-x)) translateY(var(--calc-translate-y)) scaleX(var(--scale))
-        scaleY(var(--scale)) !important;
+
+    //    transform: translateX(var(--calc-translate-x)) translateY(var(--calc-translate-y)) scaleX(var(--scale)) scaleY(var(--scale)) !important;
 }
 
 /* Fade Animation */
@@ -308,14 +308,14 @@ export default {
 }
 
 /* Slide-in bottom Animation */
-.slide-in-bottom-transition-enter-active .ww-dialog-transition-root,
-.slide-in-bottom-transition-leave-active .ww-dialog-transition-root {
+.slide-in-bottom-transition-enter-active,
+.slide-in-bottom-transition-leave-active {
     --translate-y-offset: 0;
     opacity: 1;
 }
 
-.slide-in-bottom-transition-enter-from .ww-dialog-transition-root,
-.slide-in-bottom-transition-leave-to .ww-dialog-transition-root {
+.slide-in-bottom-transition-enter-from,
+.slide-in-bottom-transition-leave-to {
     --translate-y-offset: 20px;
     opacity: 0;
 }
