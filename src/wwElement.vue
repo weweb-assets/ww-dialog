@@ -308,21 +308,16 @@ export default {
 }
 
 /* Slide-in bottom Animation */
-.slide-in-bottom-transition-enter-from .ww-dialog-transition-root {
-    --translate-y-offset: 20px;
-    opacity: 0;
-}
-.slide-in-bottom-enter-to .ww-dialog-transition-root {
-    --translate-y-offset: 0;
-    opacity: 1;
-}
-.slide-in-bottom-transition-leave-from .ww-dialog-transition-root {
-    --translate-y-offset: 0;
-    opacity: 1;
-}
+.slide-in-bottom-transition-enter-from .ww-dialog-transition-root,
 .slide-in-bottom-transition-leave-to .ww-dialog-transition-root {
     --translate-y-offset: 20px;
     opacity: 0;
+}
+
+.slide-in-bottom-transition-enter-to .ww-dialog-transition-root,
+.slide-in-bottom-transition-leave-from .ww-dialog-transition-root {
+    --translate-y-offset: 0;
+    opacity: 1;
 }
 
 /* Zoom Animation */
