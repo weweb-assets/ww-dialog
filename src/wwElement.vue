@@ -8,7 +8,7 @@
         class="ww-dialog"
     >
         <wwElement v-if="content.trigger" v-bind="content.triggerElement" role="dialog" @click="onTriggerClick()" />
-        <Transition mode="out-in" :name="transitionName">
+        <Transition :name="transitionName">
             <div v-if="isOpen">
                 <wwElement
                     v-bind="content.contentElement"
