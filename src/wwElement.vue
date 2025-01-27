@@ -230,7 +230,12 @@ export default {
 </script>
 
 <style lang="scss">
-.ww-dialog-transition-root {
+.ww-dialog-transition {
+    transition: transform var(--transition-duration) var(--transition-easing),
+        opacity var(--transition-duration) var(--transition-easing) !important;
+}
+
+.ww-dialog {
     --translate-x: 0px;
     --translate-y: 0px;
     --translate-x-offset: 0px;
@@ -238,8 +243,6 @@ export default {
     --scale: 1;
     --calc-translate-x: calc(var(--translate-x) + var(--translate-x-offset));
     --calc-translate-y: calc(var(--translate-y) + var(--translate-y-offset));
-    transition: transform var(--transition-duration) var(--transition-easing),
-        opacity var(--transition-duration) var(--transition-easing) !important;
     transform: translateX(var(--calc-translate-x)) translateY(var(--calc-translate-y)) scaleX(var(--scale))
         scaleY(var(--scale)) !important;
 }
