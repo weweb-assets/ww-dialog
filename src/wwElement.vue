@@ -9,7 +9,7 @@
     >
         <wwElement v-if="content.trigger" v-bind="content.triggerElement" role="dialog" @click="onTriggerClick()" />
         <Transition :name="transitionName">
-            <div v-if="isOpen" class="ww-dialog-transition-root">
+            <div v-if="isOpen">
                 <wwElement v-bind="content.contentElement" role="dialog" :style="contentStyle" class="ww-dialog" />
             </div>
         </Transition>
@@ -230,11 +230,6 @@ export default {
 </script>
 
 <style lang="scss">
-.ww-dialog-transition {
-    transition: transform var(--transition-duration) var(--transition-easing),
-        opacity var(--transition-duration) var(--transition-easing) !important;
-}
-
 .ww-dialog {
     --translate-x: 0px;
     --translate-y: 0px;
