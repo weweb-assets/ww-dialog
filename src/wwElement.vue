@@ -231,13 +231,13 @@ export default {
 
 <style lang="scss">
 /* Fade */
-.fade-transition-enter-active .ww-dialog-transition,
-.fade-transition-leave-active .ww-dialog-transition {
+.fade-transition-enter-active,
+.fade-transition-leave-active {
     transition: opacity var(--transition-duration) var(--transition-easing) !important;
 }
 
-.fade-transition-enter-from .ww-dialog-transition,
-.fade-transition-leave-to .ww-dialog-transition {
+.fade-transition-enter-from,
+.fade-transition-leave-to {
     opacity: 0;
 }
 
