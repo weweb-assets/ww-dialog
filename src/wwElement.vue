@@ -9,8 +9,8 @@
     >
         <wwElement v-if="content.trigger" v-bind="content.triggerElement" role="dialog" @click="onTriggerClick()" />
         <Transition :name="transitionName">
-            <div v-if="isOpen">
-                <wwElement v-bind="content.contentElement" role="dialog" :style="contentStyle" />
+            <div v-if="isOpen" :style="contentStyle" class="ww-dialog">
+                <wwElement v-bind="content.contentElement" role="dialog" />
             </div>
         </Transition>
 
@@ -230,6 +230,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.ww-dialog {
+    --translate-x: 0px;
+    --translate-y: 0px;
+    --translate-x-offset: 0px;
+    --translate-y-offset: 0px;
+    --scale: 1;
+    --calc-translate-x: calc(var(--translate-x) + var(--translate-x-offset));
+    --calc-translate-y: calc(var(--translate-y) + var(--translate-y-offset));
+    transition: transform var(--transition-duration) var(--transition-easing),
+        opacity var(--transition-duration) var(--transition-easing) !important;
+    transform: translateX(var(--calc-translate-x)) translateY(var(--calc-translate-y)) scaleX(var(--scale))
+        scaleY(var(--scale)) !important;
+}
+
 /* Fade */
 .fade-transition-enter-active,
 .fade-transition-leave-active {
@@ -250,8 +264,8 @@ export default {
 
 .slide-in-left-transition-enter-from,
 .slide-in-left-transition-leave-to {
+    --translate-x-offset: -20px;
     opacity: 0;
-    transform: translateX(-20px);
 }
 
 /* Slide Right */
