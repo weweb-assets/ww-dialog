@@ -229,7 +229,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 /* Fade */
 .fade-transition-enter-active,
 .fade-transition-leave-active {
