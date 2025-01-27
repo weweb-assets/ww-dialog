@@ -247,6 +247,12 @@ export default {
         scaleY(var(--scale)) !important;
 }
 
+.fade-transition-enter-active,
+.fade-transition-leave-active {
+    transition: transform var(--transition-duration) var(--transition-easing),
+        opacity var(--transition-duration) var(--transition-easing) !important;
+}
+
 .fade-transition-enter-from,
 .fade-transition-leave-to {
     opacity: 0;
