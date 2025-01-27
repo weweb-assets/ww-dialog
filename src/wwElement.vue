@@ -9,7 +9,7 @@
     >
         <wwElement v-if="content.trigger" v-bind="content.triggerElement" role="dialog" @click="onTriggerClick()" />
         <Transition :name="transitionName">
-            <div v-if="isOpen" class="ww-dialog-transition">
+            <div v-if="isOpen">
                 <wwElement v-bind="content.contentElement" role="dialog" :style="contentStyle" />
             </div>
         </Transition>
