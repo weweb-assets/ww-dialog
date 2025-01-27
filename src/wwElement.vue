@@ -277,7 +277,7 @@ export default {
 .slide-in-right-transition-enter-from,
 .slide-in-right-transition-leave-to {
     opacity: 0;
-    transform: translateX(20px);
+    --translate-x-offset: 20px;
 }
 
 /* Slide Top */
@@ -290,7 +290,7 @@ export default {
 .slide-in-top-transition-enter-from,
 .slide-in-top-transition-leave-to {
     opacity: 0;
-    transform: translateY(-20px);
+    --translate-y-offset: -20px;
 }
 
 /* Slide Bottom */
@@ -303,7 +303,7 @@ export default {
 .slide-in-bottom-transition-enter-from,
 .slide-in-bottom-transition-leave-to {
     opacity: 0;
-    transform: translateY(20px);
+    --translate-y-offset: -20px;
 }
 
 /* Zoom */
