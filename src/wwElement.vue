@@ -231,8 +231,8 @@ export default {
 
 <style lang="scss">
 .ww-dialog {
-    --translate-x: 0px;
-    --translate-y: 0px;
+    // --translate-x: 0px;
+    // --translate-y: 0px;
     --translate-x-offset: 0px;
     --translate-y-offset: 0px;
     --scale: 1;
