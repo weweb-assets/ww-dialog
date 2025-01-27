@@ -9,13 +9,8 @@
     >
         <wwElement v-if="content.trigger" v-bind="content.triggerElement" role="dialog" @click="onTriggerClick()" />
         <Transition :name="transitionName">
-            <div v-if="isOpen">
-                <wwElement
-                    v-bind="content.contentElement"
-                    role="dialog"
-                    class="ww-dialog-transition-root"
-                    :style="contentStyle"
-                />
+            <div v-if="isOpen" class="ww-dialog-transition-root">
+                <wwElement v-bind="content.contentElement" role="dialog" :style="contentStyle" />
             </div>
         </Transition>
 
@@ -249,7 +244,6 @@ export default {
         scaleY(var(--scale)) !important;
 }
 
-/* Fade Animation */
 .fade-transition-enter-from,
 .fade-transition-leave-to {
     opacity: 0;
