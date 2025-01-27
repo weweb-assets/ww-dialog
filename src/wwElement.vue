@@ -249,11 +249,7 @@ export default {
         scaleY(var(--scale)) !important;
 }
 
-.fade-transition-enter-active,
-.fade-transition-leave-active {
-    transition: opacity 0.5s ease;
-}
-
+/* Fade Animation */
 .fade-transition-enter-from,
 .fade-transition-leave-to {
     opacity: 0;
