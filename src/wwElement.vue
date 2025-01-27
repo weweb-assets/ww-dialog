@@ -230,79 +230,78 @@ export default {
 </script>
 
 <style lang="scss">
-/* Base transition properties */
-.ww-dialog-transition,
-.ww-dialog-transition-root {
-    transition: all var(--transition-duration) var(--transition-easing) !important;
+/* Fade */
+.fade-transition-enter-active .ww-dialog-transition,
+.fade-transition-leave-active .ww-dialog-transition {
+    transition: opacity var(--transition-duration) var(--transition-easing) !important;
 }
 
-/* Fade */
 .fade-transition-enter-from .ww-dialog-transition,
 .fade-transition-leave-to .ww-dialog-transition {
     opacity: 0;
 }
 
 /* Slide Left */
-.slide-in-left-transition-enter-from .ww-dialog-transition-root,
-.slide-in-left-transition-leave-to .ww-dialog-transition-root {
+.slide-in-left-transition-enter-active .ww-dialog-transition,
+.slide-in-left-transition-leave-active .ww-dialog-transition {
+    transition: opacity var(--transition-duration) var(--transition-easing),
+        transform var(--transition-duration) var(--transition-easing) !important;
+}
+
+.slide-in-left-transition-enter-from .ww-dialog-transition,
+.slide-in-left-transition-leave-to .ww-dialog-transition {
     opacity: 0;
     transform: translateX(-20px);
 }
 
-.slide-in-left-transition-enter-to .ww-dialog-transition-root,
-.slide-in-left-transition-leave-from .ww-dialog-transition-root {
-    opacity: 1;
-    transform: translateX(0);
+/* Slide Right */
+.slide-in-right-transition-enter-active .ww-dialog-transition,
+.slide-in-right-transition-leave-active .ww-dialog-transition {
+    transition: opacity var(--transition-duration) var(--transition-easing),
+        transform var(--transition-duration) var(--transition-easing) !important;
 }
 
-/* Slide Right */
-.slide-in-right-transition-enter-from .ww-dialog-transition-root,
-.slide-in-right-transition-leave-to .ww-dialog-transition-root {
+.slide-in-right-transition-enter-from .ww-dialog-transition,
+.slide-in-right-transition-leave-to .ww-dialog-transition {
     opacity: 0;
     transform: translateX(20px);
 }
 
-.slide-in-right-transition-enter-to .ww-dialog-transition-root,
-.slide-in-right-transition-leave-from .ww-dialog-transition-root {
-    opacity: 1;
-    transform: translateX(0);
+/* Slide Top */
+.slide-in-top-transition-enter-active .ww-dialog-transition,
+.slide-in-top-transition-leave-active .ww-dialog-transition {
+    transition: opacity var(--transition-duration) var(--transition-easing),
+        transform var(--transition-duration) var(--transition-easing) !important;
 }
 
-/* Slide Top */
-.slide-in-top-transition-enter-from .ww-dialog-transition-root,
-.slide-in-top-transition-leave-to .ww-dialog-transition-root {
+.slide-in-top-transition-enter-from .ww-dialog-transition,
+.slide-in-top-transition-leave-to .ww-dialog-transition {
     opacity: 0;
     transform: translateY(-20px);
 }
 
-.slide-in-top-transition-enter-to .ww-dialog-transition-root,
-.slide-in-top-transition-leave-from .ww-dialog-transition-root {
-    opacity: 1;
-    transform: translateY(0);
+/* Slide Bottom */
+.slide-in-bottom-transition-enter-active .ww-dialog-transition,
+.slide-in-bottom-transition-leave-active .ww-dialog-transition {
+    transition: opacity var(--transition-duration) var(--transition-easing),
+        transform var(--transition-duration) var(--transition-easing) !important;
 }
 
-/* Slide Bottom */
-.slide-in-bottom-transition-enter-from .ww-dialog-transition-root,
-.slide-in-bottom-transition-leave-to .ww-dialog-transition-root {
+.slide-in-bottom-transition-enter-from .ww-dialog-transition,
+.slide-in-bottom-transition-leave-to .ww-dialog-transition {
     opacity: 0;
     transform: translateY(20px);
 }
 
-.slide-in-bottom-transition-enter-to .ww-dialog-transition-root,
-.slide-in-bottom-transition-leave-from .ww-dialog-transition-root {
-    opacity: 1;
-    transform: translateY(0);
-}
-
 /* Zoom */
-.zoom-transition-enter-from .ww-dialog-transition-root,
-.zoom-transition-leave-to .ww-dialog-transition-root {
-    transform: scale(0);
+.zoom-transition-enter-active .ww-dialog-transition,
+.zoom-transition-leave-active .ww-dialog-transition {
+    transition: transform var(--transition-duration) var(--transition-easing) !important;
 }
 
-.zoom-transition-enter-to .ww-dialog-transition-root,
-.zoom-transition-leave-from .ww-dialog-transition-root {
-    transform: scale(1);
+.zoom-transition-enter-from .ww-dialog-transition,
+.zoom-transition-leave-to .ww-dialog-transition {
+    transform: scale(0);
 }
 
 .pointer-capture {
