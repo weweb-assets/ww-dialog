@@ -212,6 +212,8 @@ export default {
 
         onUnmounted(() => {
             removeEscapeListener();
+            wwLib.getFrontDocument().body.style.overflow = 'auto';
+            wwLib.getFrontDocument().documentElement.style.overflow = 'auto';
         });
 
         return {
