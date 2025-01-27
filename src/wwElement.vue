@@ -5,17 +5,11 @@
             '--transition-easing': content.animationEasing,
         }"
         role="dialog"
-        class="ww-dialog"
     >
         <wwElement v-if="content.trigger" v-bind="content.triggerElement" role="dialog" @click="onTriggerClick()" />
-        <Transition mode="out-in" :name="transitionName">
-            <div v-if="isOpen">
-                <wwElement
-                    v-bind="content.contentElement"
-                    role="dialog"
-                    class="ww-dialog-transition-root"
-                    :style="contentStyle"
-                />
+        <Transition :name="transitionName">
+            <div v-if="isOpen" :style="contentStyle" class="ww-dialog">
+                <wwElement v-bind="content.contentElement" role="dialog" />
             </div>
         </Transition>
 
@@ -212,6 +206,8 @@ export default {
 
         onUnmounted(() => {
             removeEscapeListener();
+            wwLib.getFrontDocument().body.style.overflow = 'auto';
+            wwLib.getFrontDocument().documentElement.style.overflow = 'auto';
         });
 
         return {
@@ -232,8 +228,8 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.ww-dialog-transition-root {
+<style lang="scss" scoped>
+.ww-dialog {
     --translate-x: 0px;
     --translate-y: 0px;
     --translate-x-offset: 0px;
@@ -247,92 +243,78 @@ export default {
         scaleY(var(--scale)) !important;
 }
 
-/* Fade Animation */
-.fade-transition-enter-from .ww-dialog-transition-root,
-.fade-transition-leave-to .ww-dialog-transition-root {
+/* Fade */
+.fade-transition-enter-active,
+.fade-transition-leave-active {
+    transition: opacity var(--transition-duration) var(--transition-easing) !important;
+}
+
+.fade-transition-enter-from,
+.fade-transition-leave-to {
     opacity: 0;
 }
 
-/* Slide-in left Animation */
-.slide-in-left-transition-enter-from .ww-dialog-transition-root {
+/* Slide Left */
+.slide-in-left-transition-enter-active,
+.slide-in-left-transition-leave-active {
+    transition: opacity var(--transition-duration) var(--transition-easing),
+        transform var(--transition-duration) var(--transition-easing) !important;
+}
+
+.slide-in-left-transition-enter-from,
+.slide-in-left-transition-leave-to {
     --translate-x-offset: -20px;
     opacity: 0;
 }
-.slide-in-left-transition-enter-to .ww-dialog-transition-root {
-    --translate-x-offset: 0;
-    opacity: 1;
-}
-.slide-in-left-transition-leave-from .ww-dialog-transition-root {
-    --translate-x-offset: 0;
-    opacity: 1;
-}
-.slide-in-left-transition-leave-to .ww-dialog-transition-root {
-    --translate-x-offset: -20px;
-    opacity: 0;
+
+/* Slide Right */
+.slide-in-right-transition-enter-active,
+.slide-in-right-transition-leave-active {
+    transition: opacity var(--transition-duration) var(--transition-easing),
+        transform var(--transition-duration) var(--transition-easing) !important;
 }
 
-/* Slide-in right Animation */
-.slide-in-right-transition-enter-from .ww-dialog-transition-root {
-    --translate-x-offset: 20px;
+.slide-in-right-transition-enter-from,
+.slide-in-right-transition-leave-to {
     opacity: 0;
-}
-.slide-in-right-enter-to .ww-dialog-transition-root {
-    --translate-x-offset: 0;
-    opacity: 1;
-}
-.slide-in-right-transition-leave-from .ww-dialog-transition-root {
-    --translate-x-offset: 0;
-    opacity: 1;
-}
-.slide-in-right-transition-leave-to .ww-dialog-transition-root {
-    --translate-x-offset: 20px;
-    opacity: 0;
+    transform: translateX(20px);
 }
 
-/* Slide-in top Animation */
-.slide-in-top-transition-enter-from .ww-dialog-transition-root {
-    --translate-y-offset: -20px;
-    opacity: 0;
-}
-.slide-in-top-enter-to .ww-dialog-transition-root {
-    --translate-y-offset: 0;
-    opacity: 1;
-}
-.slide-in-top-transition-leave-from .ww-dialog-transition-root {
-    --translate-y-offset: 0;
-    opacity: 1;
-}
-.slide-in-top-transition-leave-to .ww-dialog-transition-root {
-    --translate-y-offset: -20px;
-    opacity: 0;
+/* Slide Top */
+.slide-in-top-transition-enter-active,
+.slide-in-top-transition-leave-active {
+    transition: opacity var(--transition-duration) var(--transition-easing),
+        transform var(--transition-duration) var(--transition-easing) !important;
 }
 
-/* Slide-in bottom Animation */
-.slide-in-bottom-transition-enter-from .ww-dialog-transition-root {
-    --translate-y-offset: 20px;
+.slide-in-top-transition-enter-from,
+.slide-in-top-transition-leave-to {
     opacity: 0;
-}
-.slide-in-bottom-enter-to .ww-dialog-transition-root {
-    --translate-y-offset: 0;
-    opacity: 1;
-}
-.slide-in-bottom-transition-leave-from .ww-dialog-transition-root {
-    --translate-y-offset: 0;
-    opacity: 1;
-}
-.slide-in-bottom-transition-leave-to .ww-dialog-transition-root {
-    --translate-y-offset: 20px;
-    opacity: 0;
+    transform: translateY(-20px);
 }
 
-/* Zoom Animation */
-.zoom-transition-enter-from .ww-dialog-transition-root,
-.zoom-transition-leave-to .ww-dialog-transition-root {
-    --scale: 0;
+/* Slide Bottom */
+.slide-in-bottom-transition-enter-active,
+.slide-in-bottom-transition-leave-active {
+    transition: opacity var(--transition-duration) var(--transition-easing),
+        transform var(--transition-duration) var(--transition-easing) !important;
 }
-.zoom-transition-enter-to .ww-dialog-transition-root,
-.zoom-transition-leave-from .ww-dialog-transition-root {
-    --scale: 1;
+
+.slide-in-bottom-transition-enter-from,
+.slide-in-bottom-transition-leave-to {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Zoom */
+.zoom-transition-enter-active,
+.zoom-transition-leave-active {
+    transition: transform var(--transition-duration) var(--transition-easing) !important;
+}
+
+.zoom-transition-enter-from,
+.zoom-transition-leave-to {
+    transform: scale(0);
 }
 
 .pointer-capture {
