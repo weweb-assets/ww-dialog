@@ -249,9 +249,13 @@ export default {
         scaleY(var(--scale)) !important;
 }
 
-/* Fade Animation */
-.fade-transition-enter-from .ww-dialog-transition-root,
-.fade-transition-leave-to .ww-dialog-transition-root {
+.fade-transition-enter-active,
+.fade-transition-leave-active {
+    transition: opacity 0.5s ease;
+}
+
+.fade-transition-enter-from,
+.fade-transition-leave-to {
     opacity: 0;
 }
 
