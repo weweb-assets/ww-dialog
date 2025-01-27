@@ -28,6 +28,8 @@ export function useDialogStyle() {
             position: 'fixed',
         };
 
+        let transforms = [];
+
         switch (side) {
             case 'left':
                 style.left = 0;
@@ -39,9 +41,8 @@ export function useDialogStyle() {
                 style.left = customPositionX;
                 break;
             default:
-                // Center horizontally
                 style.left = '50%';
-                style['--translate-x'] = '-50%';
+                transforms.push('translateX(-50%)');
                 break;
         }
 
@@ -57,8 +58,12 @@ export function useDialogStyle() {
                 break;
             default:
                 style.top = '50%';
-                style['--translate-y'] = '-50%';
+                transforms.push('translateY(-50%)');
                 break;
+        }
+
+        if (transforms.length > 0) {
+            style.transform = transforms.join(' ');
         }
 
         return style;

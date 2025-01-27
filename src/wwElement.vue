@@ -230,11 +230,6 @@ export default {
 </script>
 
 <style lang="scss">
-.ww-dialog {
-    --scale: 1;
-    transform: translateX(var(--translate-x)) translateY(var(--translate-y)) scaleX(var(--scale)) scaleY(var(--scale)) !important;
-}
-
 .fade-transition-enter-active,
 .fade-transition-leave-active {
     transition: transform var(--transition-duration) var(--transition-easing),
