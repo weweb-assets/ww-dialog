@@ -5,7 +5,6 @@
             '--transition-easing': content.animationEasing,
         }"
         role="dialog"
-        class="ww-dialog"
     >
         <wwElement v-if="content.trigger" v-bind="content.triggerElement" role="dialog" @click="onTriggerClick()" />
         <Transition :name="transitionName">
