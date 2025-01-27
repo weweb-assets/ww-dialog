@@ -231,15 +231,8 @@ export default {
 
 <style lang="scss">
 .ww-dialog {
-    // --translate-x: 0px;
-    // --translate-y: 0px;
-    --translate-x-offset: 0px;
-    --translate-y-offset: 0px;
     --scale: 1;
-    --calc-translate-x: calc(var(--translate-x) + var(--translate-x-offset));
-    --calc-translate-y: calc(var(--translate-y) + var(--translate-y-offset));
-    transform: translateX(var(--calc-translate-x)) translateY(var(--calc-translate-y)) scaleX(var(--scale))
-        scaleY(var(--scale)) !important;
+    transform: translateX(var(--translate-x)) translateY(var(--translate-y)) scaleX(var(--scale)) scaleY(var(--scale)) !important;
 }
 
 .fade-transition-enter-active,
