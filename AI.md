@@ -39,9 +39,9 @@ keywords: dialog, modal, side sheet, position, animation, behavior
    - `close`: On close
 
 5. **Component actions:**
-   - `toggleDialog`: Toggle open status
-   - `openDialog`: Open
-   - `closeDialog`: Close
+   - `toggleDialog`: Toggle open status. No args allowed
+   - `openDialog`: Open. No args allowed
+   - `closeDialog`: Close. No args allowed
   
 6. **Internal variables (read only):**
    - `open`: Open status. Access using `variables['element_uid-open']`
