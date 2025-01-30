@@ -33,7 +33,7 @@ keywords: dialog, modal, side sheet, position, animation, behavior
    - `contentElement`: `ww-flexbox` - Content component to display inside the dialog.
    - `overlayElement`: `ww-flexbox` - Overlay component behind the dialog.
 
-4. **Trigger events:**
+4. **Trigger events (use as workflow triggers):**
    - `change`: On open status change
    - `open`: On open
    - `close`: On close
