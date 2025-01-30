@@ -46,7 +46,7 @@ keywords: dialog, modal, side sheet, position, animation, behavior
 6. **Internal variables (read only):**
    - `open`: Open status. Access using `variables['element_uid-open']`
 
-6. **Special Features:**
+7. **Special Features:**
    - You must put a greater z-index on the content than on the overlay, otherwise the overlay won't show
    - When user wants you to make an element open a dialog, you must remove the existing element and create a dialog with a trigger element that contains the element.
    - Never generate a dialog with just a trigger, prefer to generate a button
