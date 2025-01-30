@@ -33,7 +33,17 @@ keywords: dialog, modal, side sheet, position, animation, behavior
    - `contentElement`: `ww-flexbox` - Content component to display inside the dialog.
    - `overlayElement`: `ww-flexbox` - Overlay component behind the dialog.
 
-4. **Special Features:**
+4. **Trigger events:**
+   - `change`: On open status change
+   - `open`: On open
+   - `close`: On close
+
+5. **Component actions:**
+   - `toggleDialog`: Toggle open status
+   - `openDialog`: Open
+   - `closeDialog`: Close
+
+6. **Special Features:**
    - You must put a greater z-index on the content than on the overlay, otherwise the overlay won't show
    - When user wants you to make an element open a dialog, you must remove the existing element and create a dialog with a trigger element that contains the element.
    - Never generate a dialog with just a trigger, prefer to generate a button
