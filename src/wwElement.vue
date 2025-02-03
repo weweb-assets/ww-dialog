@@ -148,7 +148,7 @@ export default {
             return false;
         });
 
-        wwLib.wwElement.useRegisterElementLocalContext('dialog', ref({ isOpen }), {
+        wwLib.wwElement.useRegisterElementLocalContext('dialog', ref({ open: isOpen }), {
             toggleDialog: {
                 method: toggleDialog,
                 editor: {
