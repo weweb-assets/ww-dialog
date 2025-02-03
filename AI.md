@@ -51,6 +51,7 @@ keywords: dialog, modal, side sheet, position, animation, behavior
    - When user wants you to make an element open a dialog, you must remove the existing element and create a dialog with a trigger element that contains the element.
    - Never generate a dialog with just a trigger, prefer to generate a button
    - Avoid generating a dialog unless the user explicitly asks for it (e.g for dashboards or other examples, just generate a button that does nothing)
+   - The elments inside the dialog popup and their variables do not exist when the dialog is closed. If you want to access them in a formula or workflow, you need to open the dialog first.
 
 Example:
 <elements>
