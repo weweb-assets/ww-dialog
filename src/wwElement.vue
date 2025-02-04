@@ -229,7 +229,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .ww-dialog {
     --translate-x: 0px;
     --translate-y: 0px;
