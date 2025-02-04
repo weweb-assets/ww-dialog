@@ -7,11 +7,6 @@
         role="dialog"
     >
         <wwElement v-if="content.trigger" v-bind="content.triggerElement" role="dialog" @click="onTriggerClick()" />
-        <Transition :name="transitionName">
-            <div v-if="isOpen" :style="contentStyle" class="ww-dialog">
-                <wwElement v-bind="content.contentElement" role="dialog" />
-            </div>
-        </Transition>
 
         <template v-if="isOpen">
             <template v-if="!isEditing">
@@ -32,6 +27,12 @@
                 />
             </template>
         </template>
+
+        <Transition :name="transitionName">
+            <div v-if="isOpen" :style="contentStyle" class="ww-dialog">
+                <wwElement v-bind="content.contentElement" role="dialog" />
+            </div>
+        </Transition>
     </div>
 </template>
 
