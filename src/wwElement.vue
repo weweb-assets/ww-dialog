@@ -328,7 +328,7 @@ export default {
 
 .zoom-transition-enter-from,
 .zoom-transition-leave-to {
-    transform: scale(0);
+    --scale: 0;
 }
 
 .pointer-capture {
