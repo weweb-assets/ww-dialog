@@ -28,15 +28,18 @@
             </template>
         </template>
 
-        <Transition :name="transitionName">
-            <wwElement
-                v-if="isOpen"
-                v-bind="content.contentElement"
-                role="dialog"
-                :style="contentStyle"
-                class="ww-dialog"
-            />
-        </Transition>
+        <template v-if="content.animation !== null">
+            <Transition :name="transitionName">
+                <div v-if="isOpen" :style="contentStyle" class="ww-dialog">
+                    <wwElement v-bind="content.contentElement" role="dialog" />
+                </div>
+            </Transition>
+        </template>
+        <template v-else>
+            <div v-if="isOpen" :style="contentStyle" class="ww-dialog">
+                <wwElement v-bind="content.contentElement" role="dialog" />
+            </div>
+        </template>
     </div>
 </template>
 
@@ -233,7 +236,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .ww-dialog {
     --translate-x: 0px;
     --translate-y: 0px;
