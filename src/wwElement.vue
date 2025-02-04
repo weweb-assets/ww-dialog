@@ -29,9 +29,13 @@
         </template>
 
         <Transition :name="transitionName">
-            <div v-if="isOpen">
-                <wwElement v-bind="content.contentElement" role="dialog" :style="contentStyle" class="ww-dialog" />
-            </div>
+            <wwElement
+                v-if="isOpen"
+                v-bind="content.contentElement"
+                role="dialog"
+                :style="contentStyle"
+                class="ww-dialog"
+            />
         </Transition>
     </div>
 </template>
