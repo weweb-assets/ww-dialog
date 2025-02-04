@@ -323,11 +323,13 @@ export default {
 /* Zoom */
 .zoom-transition-enter-active,
 .zoom-transition-leave-active {
-    transition: transform var(--transition-duration) var(--transition-easing) !important;
+    transition: opacity var(--transition-duration) var(--transition-easing),
+        transform var(--transition-duration) var(--transition-easing) !important;
 }
 
 .zoom-transition-enter-from,
 .zoom-transition-leave-to {
+    opacity: 0;
     --scale: 0;
 }
 
