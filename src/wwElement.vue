@@ -23,29 +23,17 @@
                     ref="overlayElement"
                     v-bind="content.overlayElement"
                     role="dialog"
+                    :style="{ zIndex: content.dialogZIndex }"
                     @click="handleOverlayClick()"
                 />
             </template>
         </template>
 
-        <template v-if="content.animation !== null">
-            <Transition :name="transitionName">
-                <div v-if="isOpen" :style="{ ...contentStyle, zIndex: content.dialogZIndex }" class="ww-dialog">
-                    <wwElement v-bind="content.contentElement" role="dialog" />
-                </div>
-            </Transition>
-        </template>
-        <template v-else>
-            <div>
-                <wwElement
-                    v-if="isOpen"
-                    :style="contentStyle"
-                    class="ww-dialog"
-                    v-bind="content.contentElement"
-                    role="dialog"
-                />
+        <Transition :name="transitionName">
+            <div v-if="isOpen" :style="{ ...contentStyle, zIndex: content.dialogZIndex }" class="ww-dialog">
+                <wwElement v-bind="content.contentElement" role="dialog" />
             </div>
-        </template>
+        </Transition>
     </div>
 </template>
 

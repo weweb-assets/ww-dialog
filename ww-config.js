@@ -303,29 +303,7 @@ export default {
             bindable: true,
             hidden: content => content.animation === null,
         },
-        dialogZIndex: {
-            label: 'Z-index',
-            type: 'Number',
-            options: {
-                min: 0,
-                max: 999,
-            },
-            defaultValue: 2,
-            responsive: true,
-            states: true,
-            classes: true,
-            bindable: true,
-            /* wwEditor:start */
-            bindingValidation: {
-                type: 'number',
-                tooltip: 'A number that defines the Z-index of the dialog.',
-            },
-            propertyHelp: {
-                tooltip:
-                    'Z-index can help you position the dialog over other elements on your page. When using animations on the dialog, the setting will be here.',
-            },
-            hidden: content => content.animation === null,
-        },
+
         preventScroll: {
             label: {
                 en: 'Prevent Scrolling',
@@ -480,7 +458,28 @@ export default {
                     "If this is true, all interactions are disabled outside the dialog content. If you have this off, but have an overlay, you won't be able to interact with outside elements.",
             },
         },
-
+        dialogZIndex: {
+            label: 'Z-index',
+            type: 'Number',
+            options: {
+                min: 0,
+                max: 999,
+            },
+            defaultValue: 2,
+            responsive: true,
+            states: true,
+            classes: true,
+            bindable: true,
+            /* wwEditor:start */
+            bindingValidation: {
+                type: 'number',
+                tooltip: 'A number that defines the Z-index of the dialog.',
+            },
+            propertyHelp: {
+                tooltip: 'Z-index can help you position the dialog over other elements on your page.',
+            },
+            hidden: content => content.animation === null,
+        },
         triggerElement: {
             hidden: true,
             defaultValue: {
