@@ -1,9 +1,13 @@
 <template>
     <div
-        :style="{
-            '--transition-duration': animationDuration,
-            '--transition-easing': content.animationEasing,
-        }"
+        :style="
+            content.animation
+                ? {
+                      '--transition-duration': animationDuration,
+                      '--transition-easing': content.animationEasing,
+                  }
+                : null
+        "
         role="dialog"
     >
         <wwElement v-if="content.trigger" v-bind="content.triggerElement" role="dialog" @click="onTriggerClick()" />
@@ -29,11 +33,18 @@
             </template>
         </template>
 
-        <Transition :name="transitionName">
-            <div v-if="isOpen" :style="{ ...contentStyle, zIndex: content.dialogZIndex }" class="ww-dialog">
+        <template v-if="transitionName">
+            <Transition :name="transitionName">
+                <div v-if="isOpen" :style="{ ...contentStyle, zIndex: content.dialogZIndex }" class="ww-dialog">
+                    <wwElement v-bind="content.contentElement" role="dialog" />
+                </div>
+            </Transition>
+        </template>
+        <template v-else>
+            <div v-if="isOpen" :style="{ ...contentStyle, zIndex: content.dialogZIndex }">
                 <wwElement v-bind="content.contentElement" role="dialog" />
             </div>
-        </Transition>
+        </template>
     </div>
 </template>
 
