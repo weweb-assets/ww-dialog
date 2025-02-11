@@ -41,8 +41,8 @@
             </Transition>
         </template>
         <template v-else>
-            <div v-if="isOpen" :style="{ ...contentStyle, zIndex: content.dialogZIndex }">
-                <wwElement v-bind="content.contentElement" role="dialog" class="ww-dialog" />
+            <div v-if="isOpen" :style="{ ...contentStyle, zIndex: content.dialogZIndex }" class="ww-dialog">
+                <wwElement v-bind="content.contentElement" role="dialog" />
             </div>
         </template>
     </div>
