@@ -52,7 +52,8 @@ keywords: dialog, modal, side sheet, position, animation, behavior
    - Never generate a dialog with just a trigger, prefer to generate a button
    - Avoid generating a dialog unless the user explicitly asks for it (e.g for dashboards or other examples, just generate a button that does nothing)
    - The elments inside the dialog popup and their variables do not exist when the dialog is closed. If you want to access them in a formula or workflow, you need to open the dialog first.
-   - A dialog must be the child of another element or section else it will not be included in the page.
+   - A dialog must be the child of another element or section else it will not be included in the page. It will not open if it is not a child and another element or section.
+   - If there is no suitable element or section where to put the dialog element, add an empty section with the dialog inside.
    - This element cannot be placed inside a repeat
 
 Example:
