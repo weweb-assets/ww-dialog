@@ -12,18 +12,18 @@ keywords: dialog, modal, side sheet, position, animation, behavior
    - `type`: `'none' | 'modal' | 'sheet'` - Type of dialog to display. Default: `'modal'`.
    - `sideModal`: `'left' | 'center' | 'right' | 'custom'` - Side position for modals. Default: `'center'`.
    - `customPositionX`: `string` - Horizontal position for custom modal positioning.
+   - `customPositionY`: `string` - Vertical position for custom modal positioning.
    - `sideSheet`: `'left' | 'top' | 'right' | 'bottom'` - Side position for sheets. Default: `'top'`.
    - `align`: `'top' | 'center' | 'bottom' | 'custom'` - Vertical alignment for modals. Default: `'center'`.
-   - `customPositionY`: `string` - Vertical position for custom modal positioning.
    - `animation`: `'fade' | 'slide-in' | 'zoom' | null` - Animation type for opening/closing. Default: `null`.
    - `slideInDirection`: `'top' | 'left' | 'bottom' | 'right'` - Direction for slide-in animation. Default: `'top'`.
    - `animationDuration`: `number` - Duration of the animation in milliseconds. Default: `300`.
    - `animationEasing`: `'linear' | 'ease' | 'ease-in' | 'ease-out' | 'ease-in-out'` - Easing function for animation. Default: `'linear'`.
    - `preventScroll`: `boolean` - Whether to prevent scrolling when the dialog is open. Default: `true`.
-   - `escClose`: `boolean` - Whether the dialog should close when the escape key is pressed. Default: `false`.
-   - `trigger`: `boolean` - Whether to display a trigger component. Default: `true`.
+   - `trigger`: `boolean` - Whether to display a trigger component. Default: `true`. In this case the dialog MUST still be a child of another element or section.
    - `triggerClickOpens`: `boolean` - Whether clicking the trigger should open the dialog. Default: `true`.
    - `overlay`: `boolean` - Whether to display an overlay behind the dialog. Default: `true`.
+   - `escClose`: `boolean` - Whether the dialog should close when the escape key is pressed. Default: `false`.
    - `clickOutsideCloses`: `boolean` - Whether clicking outside the dialog should close it. Default: `false`.
    - `overlayClickCloses`: `boolean` - Whether clicking the overlay should close the dialog. Default: `true`.
    - `preventInteractionsOutside`: `boolean` - Whether to prevent interactions outside the dialog. Default: `true`.
@@ -52,11 +52,12 @@ keywords: dialog, modal, side sheet, position, animation, behavior
    - Never generate a dialog with just a trigger, prefer to generate a button
    - Avoid generating a dialog unless the user explicitly asks for it (e.g for dashboards or other examples, just generate a button that does nothing)
    - The elments inside the dialog popup and their variables do not exist when the dialog is closed. If you want to access them in a formula or workflow, you need to open the dialog first.
-   - A dialog must be the child of another element or section, even without a trigger element.
+   - A dialog must be the child of another element or section else it will not be included in the page.
    - This element cannot be placed inside a repeat
 
 Example:
 <elements>
+{"uid":"container","tag":"ww-div","props":{...},"styles":{...}","children":{"children":[{"uid":"dialog"}]}}
 {"uid":"dialog","tag":"ww-dialog","props":{"default":{"type":"modal","align":"center","modal":false,"overlay":true,"trigger":true,"escClose":true,"animation":"slide-in","sideModal":"middle","sideSheet":"right","preventScroll":true,"animationEasing":"linear","customPositionX":"10%","customPositionY":"10px","slideInDirection":"top","animationDuration":200,"triggerClickOpens":true,"clickOutsideCloses":true,"overlayClickCloses":true,"preventInteractionsOutside":true,"text":"New text"}},"styles":{"default":{"display":"flex","alignItems":"flex-end","flexDirection":"column","justifyContent":"space-around"}},"children":{"triggerElement":{"uid":"trigger"},"contentElement":{"uid":"content"},"overlayElement":{"uid":"overlay"}}}
 {"uid":"trigger","tag":"ww-div","name":"Trigger","children":{"children":[{"uid":"trigger_button"},{"uid":"trigger_text"}]}}
 {"uid":"trigger_button","tag":"ww-button","props":{"default":{"disabled":false,"fontStyle":"ww-font-style-text","buttonType":"button","hasLeftIcon":false,"hasRightIcon":false,"text":{"en":"Button"}}},"styles":{"default":{"cursor":"pointer","height":"38px","padding":"8px 16px","aspectRatio":"unset","borderRadius":"6px","backgroundColor":"#000000","color":"#FFFFFF","fontSize":"14px","fontWeight":500,"lineHeight":"20px"}}}
