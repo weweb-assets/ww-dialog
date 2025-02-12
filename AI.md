@@ -8,7 +8,7 @@ keywords: dialog, modal, side sheet, position, animation, behavior
 
 1. **Element Purpose:**
    -The `ww-dialog` element allows you to create modals or side sheets that can be opened and closed. It provides various options for positioning, animation, and behavior.
-   -The `ww-dialog` is a wrapper that be used in place of a button, icon or any other trigger element. This trigger element will be visible in the page when the dialog is not open.
+   -The `ww-dialog` is a wrapper that be used in place of a button, icon or any other trigger element. This trigger element will be visible in the page when the dialog is not open. It is forbidden to have a trigger element that is an empty ww-div.
    A classic page layout would be:
       - A div
         -- A button
