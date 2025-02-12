@@ -1,14 +1,16 @@
 ---
 name: ww-dialog
-description: The `ww-dialog` component allows you to create modals or side sheets that can be opened and closed.
+description: The `ww-dialog` element allows you to create modals or side sheets that can be opened and closed.
 keywords: dialog, modal, side sheet, position, animation, behavior
 ---
 
 #### ww-dialog
 
-1. **Component Purpose:** The `ww-dialog` component allows you to create modals or side sheets that can be opened and closed. It provides various options for positioning, animation, and behavior.
+1. **Element Purpose:**
+   -The `ww-dialog` element allows you to create modals or side sheets that can be opened and closed. It provides various options for positioning, animation, and behavior.
+   -The `ww-dialog` is a wrapper that be used in place of a button, icon or any other trigger element. This trigger element will be visible in the page when the dialog is not open.
 
-2. **Properties:**
+3. **Properties:**
    - `type`: `'none' | 'modal' | 'sheet'` - Type of dialog to display. Default: `'modal'`.
    - `sideModal`: `'left' | 'center' | 'right' | 'custom'` - Side position for modals. Default: `'center'`.
    - `customPositionX`: `string` - Horizontal position for custom modal positioning.
@@ -26,30 +28,31 @@ keywords: dialog, modal, side sheet, position, animation, behavior
    - `overlayClickCloses`: `boolean` - Whether clicking the overlay should close the dialog. Default: `true`.
    - `preventInteractionsOutside`: `boolean` - Whether to prevent interactions outside the dialog. Default: `true`.
 
-3. **Children Components:**
-   - `triggerElement`: `ww-div` - Trigger component to open the dialog.
-   - `contentElement`: `ww-div` - Content component to display inside the dialog.
-   - `overlayElement`: `ww-div` - Overlay component behind the dialog.
+4. **Children Elements:**
+   - `triggerElement`: `ww-div` - Trigger element to open the dialog.
+   - `contentElement`: `ww-div` - Content element to display inside the dialog.
+   - `overlayElement`: `ww-div` - Overlay element behind the dialog.
 
-4. **Trigger events (use as workflow triggers):**
+5. **Trigger events (use as workflow triggers):**
    - `change`: On open status change
    - `open`: On open
    - `close`: On close
 
-5. **Component actions:**
+6. **Element actions:**
    - `toggleDialog`: Toggle open status. No args allowed
    - `openDialog`: Open. No args allowed
    - `closeDialog`: Close. No args allowed
   
-6. **Internal variables (read only):**
+7. **Internal variables (read only):**
    - `open`: Open status. Access using `variables['element_uid-open']`
 
-7. **Special Features:**
+8. **Special Features:**
    - You must put a greater z-index on the content than on the overlay, otherwise the overlay won't show
    - When user wants you to make an element open a dialog, you must remove the existing element and create a dialog with a trigger element that contains the element.
    - Avoid generating a dialog unless the user explicitly asks for it (e.g for dashboards or other examples, just generate a button that does nothing)
    - The elements inside the dialog popup and their variables do not exist when the dialog is closed. If you want to access them in a formula or workflow, you need to open the dialog first.
    - The elements inside the dialog don't have access to any external `context`. Use a global variable to pass data inside to them.
+     
 Example:
 <elements>
 {"uid":"container","tag":"ww-div","props":{...},"styles":{...}","children":{"children":[{"uid":"dialog"}]}}
