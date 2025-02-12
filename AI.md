@@ -29,9 +29,9 @@ keywords: dialog, modal, side sheet, position, animation, behavior
    - `preventInteractionsOutside`: `boolean` - Whether to prevent interactions outside the dialog. Default: `true`.
 
 4. **Children Elements:**
-   - `triggerElement`: `ww-div` - Trigger element to open the dialog.
-   - `contentElement`: `ww-div` - Content element to display inside the dialog.
-   - `overlayElement`: `ww-div` - Overlay element behind the dialog.
+   - `triggerElement`: `ww-div` - Trigger element to open the dialog. Mandatory
+   - `contentElement`: `ww-div` - Content element to display inside the dialog. Mandatory
+   - `overlayElement`: `ww-div` - Overlay element behind the dialog. Mandatory
 
 5. **Trigger events (use as workflow triggers):**
    - `change`: On open status change
