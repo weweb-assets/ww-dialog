@@ -20,8 +20,6 @@ keywords: dialog, modal, side sheet, position, animation, behavior
    - `animationDuration`: `number` - Duration of the animation in milliseconds. Default: `300`.
    - `animationEasing`: `'linear' | 'ease' | 'ease-in' | 'ease-out' | 'ease-in-out'` - Easing function for animation. Default: `'linear'`.
    - `preventScroll`: `boolean` - Whether to prevent scrolling when the dialog is open. Default: `true`.
-   - `trigger`: `boolean` - Whether to display a trigger component. Default: `true`. In this case the dialog MUST still be a child of another element or section.
-   - `triggerClickOpens`: `boolean` - Whether clicking the trigger should open the dialog. Default: `true`.
    - `overlay`: `boolean` - Whether to display an overlay behind the dialog. Default: `true`.
    - `escClose`: `boolean` - Whether the dialog should close when the escape key is pressed. Default: `false`.
    - `clickOutsideCloses`: `boolean` - Whether clicking outside the dialog should close it. Default: `false`.
@@ -49,17 +47,13 @@ keywords: dialog, modal, side sheet, position, animation, behavior
 7. **Special Features:**
    - You must put a greater z-index on the content than on the overlay, otherwise the overlay won't show
    - When user wants you to make an element open a dialog, you must remove the existing element and create a dialog with a trigger element that contains the element.
-   - Never generate a dialog with just a trigger, prefer to generate a button
    - Avoid generating a dialog unless the user explicitly asks for it (e.g for dashboards or other examples, just generate a button that does nothing)
-   - The elments inside the dialog popup and their variables do not exist when the dialog is closed. If you want to access them in a formula or workflow, you need to open the dialog first.
-   - A dialog must be the child of another element or section else it will not be included in the page. It will not open if it is not a child and another element or section.
-   - If there is no suitable element or section where to put the dialog element, add an empty section with the dialog inside.
-   - This element cannot be placed inside a repeat
-
+   - The elements inside the dialog popup and their variables do not exist when the dialog is closed. If you want to access them in a formula or workflow, you need to open the dialog first.
+   - The elements inside the dialog don't have access to any external `context`. Use a global variable to pass data inside to them.
 Example:
 <elements>
 {"uid":"container","tag":"ww-div","props":{...},"styles":{...}","children":{"children":[{"uid":"dialog"}]}}
-{"uid":"dialog","tag":"ww-dialog","props":{"default":{"type":"modal","align":"center","modal":false,"overlay":true,"trigger":true,"escClose":true,"animation":"slide-in","sideModal":"middle","sideSheet":"right","preventScroll":true,"animationEasing":"linear","customPositionX":"10%","customPositionY":"10px","slideInDirection":"top","animationDuration":200,"triggerClickOpens":true,"clickOutsideCloses":true,"overlayClickCloses":true,"preventInteractionsOutside":true,"text":"New text"}},"styles":{"default":{"display":"flex","alignItems":"flex-end","flexDirection":"column","justifyContent":"space-around"}},"children":{"triggerElement":{"uid":"trigger"},"contentElement":{"uid":"content"},"overlayElement":{"uid":"overlay"}}}
+{"uid":"dialog","tag":"ww-dialog","props":{"default":{"type":"modal","align":"center","modal":false,"overlay":true,"escClose":true,"animation":"slide-in","sideModal":"middle","sideSheet":"right","preventScroll":true,"animationEasing":"linear","customPositionX":"10%","customPositionY":"10px","slideInDirection":"top","animationDuration":200,"clickOutsideCloses":true,"overlayClickCloses":true,"preventInteractionsOutside":true,"text":"New text"}},"styles":{"default":{"display":"flex","alignItems":"flex-end","flexDirection":"column","justifyContent":"space-around"}},"children":{"triggerElement":{"uid":"trigger"},"contentElement":{"uid":"content"},"overlayElement":{"uid":"overlay"}}}
 {"uid":"trigger","tag":"ww-div","name":"Trigger","children":{"children":[{"uid":"trigger_button"},{"uid":"trigger_text"}]}}
 {"uid":"trigger_button","tag":"ww-button","props":{"default":{"disabled":false,"fontStyle":"ww-font-style-text","buttonType":"button","hasLeftIcon":false,"hasRightIcon":false,"text":{"en":"Button"}}},"styles":{"default":{"cursor":"pointer","height":"38px","padding":"8px 16px","aspectRatio":"unset","borderRadius":"6px","backgroundColor":"#000000","color":"#FFFFFF","fontSize":"14px","fontWeight":500,"lineHeight":"20px"}}}
 {"uid":"trigger_text","tag":"ww-text","props":{"default":{"tag":"p","bgColor":"","shadows":"","fontStyle":"ww-font-style-text","textColor":"","transformation":"","text":{"en":"This is the trigger"}}},"styles":{"default":{"fontSize":"16px"}}}
