@@ -478,7 +478,6 @@ export default {
             propertyHelp: {
                 tooltip: 'Z-index can help you position the dialog over other elements on your page.',
             },
-            hidden: content => content.animation === null,
         },
         triggerElement: {
             hidden: true,

@@ -35,7 +35,7 @@
 
         <template v-if="transitionName">
             <Transition :name="transitionName">
-                <div v-if="isOpen" :style="{ zIndex: content.dialogZIndex }">
+                <div v-if="isOpen">
                     <wwElement
                         v-bind="content.contentElement"
                         role="dialog"
