@@ -39,17 +39,17 @@
                     <wwElement
                         v-bind="content.contentElement"
                         role="dialog"
-                        :style="{ ...contentStyle }"
+                        :style="{ ...contentStyle, zIndex: content.dialogZIndex }"
                         class="ww-dialog"
                     />
                 </div>
             </Transition>
         </template>
         <template v-else>
-            <div v-if="isOpen" :style="{ zIndex: content.dialogZIndex }">
+            <div v-if="isOpen">
                 <wwElement
                     v-bind="content.contentElement"
-                    :style="{ ...contentStyle }"
+                    :style="{ ...contentStyle, zIndex: content.dialogZIndex }"
                     role="dialog"
                     class="ww-dialog"
                 />
