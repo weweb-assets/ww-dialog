@@ -34,7 +34,7 @@
         </template>
 
         <template v-if="transitionName">
-            <Transition :name="transitionName">
+            <Transition mode="out-in" :name="transitionName">
                 <div v-if="isOpen">
                     <wwElement
                         v-bind="content.contentElement"
