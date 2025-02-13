@@ -10,58 +10,63 @@ keywords: dialog, modal, side sheet, position, animation, behavior
    -The `ww-dialog` element allows you to create modals or side sheets that can be opened and closed. It provides various options for positioning, animation, and behavior.
    -The `ww-dialog` is a wrapper that be used in place of a button, icon or any other trigger element. This trigger element will be visible in the page when the dialog is not open. It is forbidden to have a trigger element that is an empty ww-div.
    A classic page layout would be:
-      - A div
-        -- A button
-   A layout that uses a ww-dialog would be:
-      - A div
-        -- A ww-dialog
-           --- A button as trigger
-   Both layouts will visualy be the same but a click on the button will automaticaly open the dialog content and overlay. 
 
-3. **Properties:**
-   - `type`: `'none' | 'modal' | 'sheet'` - Type of dialog to display. Default: `'modal'`.
-   - `sideModal`: `'left' | 'center' | 'right' | 'custom'` - Side position for modals. Default: `'center'`.
-   - `customPositionX`: `string` - Horizontal position for custom modal positioning.
-   - `customPositionY`: `string` - Vertical position for custom modal positioning.
-   - `sideSheet`: `'left' | 'top' | 'right' | 'bottom'` - Side position for sheets. Default: `'top'`.
-   - `align`: `'top' | 'center' | 'bottom' | 'custom'` - Vertical alignment for modals. Default: `'center'`.
-   - `animation`: `'fade' | 'slide-in' | 'zoom' | null` - Animation type for opening/closing. Default: `null`.
-   - `slideInDirection`: `'top' | 'left' | 'bottom' | 'right'` - Direction for slide-in animation. Default: `'top'`.
-   - `animationDuration`: `number` - Duration of the animation in milliseconds. Default: `300`.
-   - `animationEasing`: `'linear' | 'ease' | 'ease-in' | 'ease-out' | 'ease-in-out'` - Easing function for animation. Default: `'linear'`.
-   - `preventScroll`: `boolean` - Whether to prevent scrolling when the dialog is open. Default: `true`.
-   - `overlay`: `boolean` - Whether to display an overlay behind the dialog. Default: `true`.
-   - `escClose`: `boolean` - Whether the dialog should close when the escape key is pressed. Default: `false`.
-   - `clickOutsideCloses`: `boolean` - Whether clicking outside the dialog should close it. Default: `false`.
-   - `overlayClickCloses`: `boolean` - Whether clicking the overlay should close the dialog. Default: `true`.
-   - `preventInteractionsOutside`: `boolean` - Whether to prevent interactions outside the dialog. Default: `true`.
-   - `dialogZIndex`: `number` - Z-index CSS property of the content and the overlay elements. Default `2`.
+    - A div
+      -- A button
+      A layout that uses a ww-dialog would be:
+    - A div
+      -- A ww-dialog
+      --- A button as trigger
+      Both layouts will visualy be the same but a click on the button will automaticaly open the dialog content and overlay.
 
-4. **Children Elements:**
-   - `triggerElement`: `ww-div` - Trigger element to open the dialog. Mandatory
-   - `contentElement`: `ww-div` - Content element to display inside the dialog. Mandatory
-   - `overlayElement`: `ww-div` - Overlay element behind the dialog. Mandatory
+2. **Properties:**
 
-5. **Trigger events (use as workflow triggers):**
-   - `change`: On open status change
-   - `open`: On open
-   - `close`: On close
+    - `type`: `'none' | 'modal' | 'sheet'` - Type of dialog to display. Default: `'modal'`.
+    - `sideModal`: `'left' | 'center' | 'right' | 'custom'` - Side position for modals. Default: `'center'`.
+    - `customPositionX`: `string` - Horizontal position for custom modal positioning.
+    - `customPositionY`: `string` - Vertical position for custom modal positioning.
+    - `sideSheet`: `'left' | 'top' | 'right' | 'bottom'` - Side position for sheets. Default: `'top'`.
+    - `align`: `'top' | 'center' | 'bottom' | 'custom'` - Vertical alignment for modals. Default: `'center'`.
+    - `animation`: `'fade' | 'slide-in' | 'zoom' | null` - Animation type for opening/closing. Default: `null`.
+    - `slideInDirection`: `'top' | 'left' | 'bottom' | 'right'` - Direction for slide-in animation. Default: `'top'`.
+    - `animationDuration`: `number` - Duration of the animation in milliseconds. Default: `300`.
+    - `animationEasing`: `'linear' | 'ease' | 'ease-in' | 'ease-out' | 'ease-in-out'` - Easing function for animation. Default: `'linear'`.
+    - `preventScroll`: `boolean` - Whether to prevent scrolling when the dialog is open. Default: `true`.
+    - `overlay`: `boolean` - Whether to display an overlay behind the dialog. Default: `true`.
+    - `escClose`: `boolean` - Whether the dialog should close when the escape key is pressed. Default: `false`.
+    - `clickOutsideCloses`: `boolean` - Whether clicking outside the dialog should close it. Default: `false`.
+    - `overlayClickCloses`: `boolean` - Whether clicking the overlay should close the dialog. Default: `true`.
+    - `preventInteractionsOutside`: `boolean` - Whether to prevent interactions outside the dialog. Default: `true`.
 
-6. **Element actions:**
-   - `toggleDialog`: Toggle open status. No args allowed
-   - `openDialog`: Open. No args allowed
-   - `closeDialog`: Close. No args allowed
-  
-7. **Internal variables (read only):**
-   - `open`: Open status. Access using `variables['element_uid-open']`
+3. **Children Elements:**
 
-8. **Special Features:**
-   - Applying Z-index on overlay and content element is done via the `dialogZIndex` property instead of the elements itself.
-   - When user wants you to make an element open a dialog, you must remove the existing element and create a dialog with a trigger element that contains the element.
-   - Avoid generating a dialog unless the user explicitly asks for it (e.g for dashboards or other examples, just generate a button that does nothing)
-   - The elements inside the dialog popup and their variables do not exist when the dialog is closed. If you want to access them in a formula or workflow, you need to open the dialog first.
-   - The elements inside the dialog don't have access to any external `context`. Use a global variable to pass data inside to them.
-     
+    - `triggerElement`: `ww-div` - Trigger element to open the dialog. Mandatory
+    - `contentElement`: `ww-div` - Content element to display inside the dialog. Mandatory
+    - `overlayElement`: `ww-div` - Overlay element behind the dialog. Mandatory
+
+4. **Trigger events (use as workflow triggers):**
+
+    - `change`: On open status change
+    - `open`: On open
+    - `close`: On close
+
+5. **Element actions:**
+
+    - `toggleDialog`: Toggle open status. No args allowed
+    - `openDialog`: Open. No args allowed
+    - `closeDialog`: Close. No args allowed
+
+6. **Internal variables (read only):**
+
+    - `open`: Open status. Access using `variables['element_uid-open']`
+
+7. **Special Features:**
+    - You must put a greater z-index on the content than on the overlay, otherwise the overlay won't show
+    - When user wants you to make an element open a dialog, you must remove the existing element and create a dialog with a trigger element that contains the element.
+    - Avoid generating a dialog unless the user explicitly asks for it (e.g for dashboards or other examples, just generate a button that does nothing)
+    - The elements inside the dialog popup and their variables do not exist when the dialog is closed. If you want to access them in a formula or workflow, you need to open the dialog first.
+    - The elements inside the dialog don't have access to any external `context`. Use a global variable to pass data inside to them.
+
 Example:
 <elements>
 {"uid":"container","tag":"ww-div","props":{...},"styles":{...}","children":{"children":[{"uid":"dialog"}]}}
@@ -76,4 +81,3 @@ Example:
 {"uid":"content_text","tag":"ww-text","props":{"default":{"tag":"p","bgColor":"","shadows":"","fontStyle":"ww-font-style-text","textColor":"","transformation":"","text":{"en":"This is the content"}}},"styles":{"default":{"fontSize":"16px"}}}
 {"uid":"overlay","tag":"ww-div","name":"Overlay","styles":{"default":{"top":"0px","left":"0px","width":"100vw","height":"100vh","position":"fixed","backgroundColor":"#5C5C5C66"}}}
 </elements>
-
