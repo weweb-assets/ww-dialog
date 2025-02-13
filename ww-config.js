@@ -17,7 +17,7 @@ export default {
         {
             name: 'change',
             label: {
-                en: 'On value change',
+                en: 'On open status change',
                 fr: 'Changement de valeur',
             },
             event: { value: true },
