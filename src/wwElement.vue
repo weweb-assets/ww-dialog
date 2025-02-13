@@ -39,7 +39,7 @@
                     <wwElement
                         v-bind="content.contentElement"
                         role="dialog"
-                        :style="{ ...contentStyle, zIndex: content.dialogZIndex }"
+                        :style="{ ...contentStyle }"
                         class="ww-dialog"
                     />
                 </div>
@@ -49,7 +49,7 @@
             <div v-if="isOpen">
                 <wwElement
                     v-bind="content.contentElement"
-                    :style="{ ...contentStyle, zIndex: content.dialogZIndex }"
+                    :style="{ ...contentStyle }"
                     role="dialog"
                     class="ww-dialog"
                 />
