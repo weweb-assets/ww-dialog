@@ -278,42 +278,57 @@ export default {
 }
 
 /* Slide Left */
-.slide-in-left-transition-enter-active,
-.slide-in-left-transition-leave-active {
-    transition: opacity var(--transition-duration) var(--transition-easing),
-        transform var(--transition-duration) var(--transition-easing) !important;
+.slide-in-left-transition-enter-from .ww-dialog {
+    --translate-x-offset: -20px;
+    opacity: 0;
 }
-
-.slide-in-left-transition-enter-from,
-.slide-in-left-transition-leave-to {
+.slide-in-left-enter-to .ww-dialog {
+    --translate-x-offset: 0;
+    opacity: 1;
+}
+.slide-in-left-transition-leave-from .ww-dialog {
+    --translate-x-offset: 0;
+    opacity: 1;
+}
+.slide-in-left-transition-leave-to .ww-dialog {
     --translate-x-offset: -20px;
     opacity: 0;
 }
 
 /* Slide Right */
-.slide-in-right-transition-enter-active,
-.slide-in-right-transition-leave-active {
-    transition: opacity var(--transition-duration) var(--transition-easing),
-        transform var(--transition-duration) var(--transition-easing) !important;
-}
-
-.slide-in-right-transition-enter-from,
-.slide-in-right-transition-leave-to {
-    opacity: 0;
+.slide-in-right-transition-enter-from .ww-dialog {
     --translate-x-offset: 20px;
+    opacity: 0;
+}
+.slide-in-right-enter-to .ww-dialog {
+    --translate-x-offset: 0;
+    opacity: 1;
+}
+.slide-in-right-transition-leave-from .ww-dialog {
+    --translate-x-offset: 0;
+    opacity: 1;
+}
+.slide-in-right-transition-leave-to .ww-dialog {
+    --translate-x-offset: 20px;
+    opacity: 0;
 }
 
 /* Slide Top */
-.slide-in-top-transition-enter-active,
-.slide-in-top-transition-leave-active .ww-dialog {
-    transition: opacity var(--transition-duration) var(--transition-easing),
-        transform var(--transition-duration) var(--transition-easing) !important;
-}
-
-.slide-in-top-transition-enter-from,
-.slide-in-top-transition-leave-to .ww-dialog {
-    opacity: 0;
+.slide-in-top-transition-enter-from .ww-dialog {
     --translate-y-offset: -20px;
+    opacity: 0;
+}
+.slide-in-top-enter-to .ww-dialog {
+    --translate-y-offset: 0;
+    opacity: 1;
+}
+.slide-in-top-transition-leave-from .ww-dialog {
+    --translate-y-offset: 0;
+    opacity: 1;
+}
+.slide-in-top-transition-leave-to .ww-dialog {
+    --translate-y-offset: -20px;
+    opacity: 0;
 }
 
 /* Slide-in bottom Animation */
@@ -334,17 +349,14 @@ export default {
     opacity: 0;
 }
 
-/* Zoom */
-.zoom-transition-enter-active,
-.zoom-transition-leave-active {
-    transition: opacity var(--transition-duration) var(--transition-easing),
-        transform var(--transition-duration) var(--transition-easing) !important;
-}
-
-.zoom-transition-enter-from,
-.zoom-transition-leave-to {
-    opacity: 0;
+/* Zoom Animation */
+.zoom-transition-enter-from .ww-dialog,
+.zoom-transition-leave-to .ww-dialog {
     --scale: 0;
+}
+.zoom-transition-enter-to .ww-dialog,
+.zoom-transition-leave-from .ww-dialog {
+    --scale: 1;
 }
 
 .pointer-capture {
