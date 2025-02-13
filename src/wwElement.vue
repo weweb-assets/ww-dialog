@@ -34,7 +34,7 @@
         </template>
 
         <template v-if="transitionName">
-            <Transition mode="out-in" :name="transitionName">
+            <Transition :name="transitionName">
                 <div v-if="isOpen">
                     <wwElement
                         v-bind="content.contentElement"
@@ -305,13 +305,13 @@ export default {
 
 /* Slide Top */
 .slide-in-top-transition-enter-active,
-.slide-in-top-transition-leave-active {
+.slide-in-top-transition-leave-active .ww-dialog {
     transition: opacity var(--transition-duration) var(--transition-easing),
         transform var(--transition-duration) var(--transition-easing) !important;
 }
 
 .slide-in-top-transition-enter-from,
-.slide-in-top-transition-leave-to {
+.slide-in-top-transition-leave-to .ww-dialog {
     opacity: 0;
     --translate-y-offset: -20px;
 }
