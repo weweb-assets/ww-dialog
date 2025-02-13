@@ -316,17 +316,22 @@ export default {
     --translate-y-offset: -20px;
 }
 
-/* Slide Bottom */
-.slide-in-bottom-transition-enter-active,
-.slide-in-bottom-transition-leave-active {
-    transition: opacity var(--transition-duration) var(--transition-easing),
-        transform var(--transition-duration) var(--transition-easing) !important;
-}
-
-.slide-in-bottom-transition-enter-from,
-.slide-in-bottom-transition-leave-to {
+/* Slide-in bottom Animation */
+.slide-in-bottom-transition-enter-from .ww-dialog-transition-root {
+    --translate-y-offset: 20px;
     opacity: 0;
-    --translate-y-offset: -20px;
+}
+.slide-in-bottom-enter-to .ww-dialog-transition-root {
+    --translate-y-offset: 0;
+    opacity: 1;
+}
+.slide-in-bottom-transition-leave-from .ww-dialog-transition-root {
+    --translate-y-offset: 0;
+    opacity: 1;
+}
+.slide-in-bottom-transition-leave-to .ww-dialog-transition-root {
+    --translate-y-offset: 20px;
+    opacity: 0;
 }
 
 /* Zoom */
