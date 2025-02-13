@@ -35,7 +35,6 @@ keywords: dialog, modal, side sheet, position, animation, behavior
    - `clickOutsideCloses`: `boolean` - Whether clicking outside the dialog should close it. Default: `false`.
    - `overlayClickCloses`: `boolean` - Whether clicking the overlay should close the dialog. Default: `true`.
    - `preventInteractionsOutside`: `boolean` - Whether to prevent interactions outside the dialog. Default: `true`.
-   - `dialogZIndex`: `number` - Z-index CSS property of the content and the overlay elements. Default `2`.
 
 4. **Children Elements:**
    - `triggerElement`: `ww-div` - Trigger element to open the dialog. Mandatory
@@ -56,7 +55,7 @@ keywords: dialog, modal, side sheet, position, animation, behavior
    - `open`: Open status. Access using `variables['element_uid-open']`
 
 8. **Special Features:**
-   - Applying Z-index on overlay and content element is done via the `dialogZIndex` property instead of the elements itself.
+   - You must put a greater z-index on the content than on the overlay, otherwise the overlay won't show
    - When user wants you to make an element open a dialog, you must remove the existing element and create a dialog with a trigger element that contains the element.
    - Avoid generating a dialog unless the user explicitly asks for it (e.g for dashboards or other examples, just generate a button that does nothing)
    - The elements inside the dialog popup and their variables do not exist when the dialog is closed. If you want to access them in a formula or workflow, you need to open the dialog first.
@@ -76,4 +75,3 @@ Example:
 {"uid":"content_text","tag":"ww-text","props":{"default":{"tag":"p","bgColor":"","shadows":"","fontStyle":"ww-font-style-text","textColor":"","transformation":"","text":{"en":"This is the content"}}},"styles":{"default":{"fontSize":"16px"}}}
 {"uid":"overlay","tag":"ww-div","name":"Overlay","styles":{"default":{"top":"0px","left":"0px","width":"100vw","height":"100vh","position":"fixed","backgroundColor":"#5C5C5C66"}}}
 </elements>
-
