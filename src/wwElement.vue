@@ -35,14 +35,24 @@
 
         <template v-if="transitionName">
             <Transition :name="transitionName">
-                <div v-if="isOpen" :style="{ ...contentStyle, zIndex: content.dialogZIndex }" class="ww-dialog">
-                    <wwElement v-bind="content.contentElement" role="dialog" />
+                <div v-if="isOpen">
+                    <wwElement
+                        v-bind="content.contentElement"
+                        role="dialog"
+                        :style="{ ...contentStyle, zIndex: content.dialogZIndex }"
+                        class="ww-dialog"
+                    />
                 </div>
             </Transition>
         </template>
         <template v-else>
-            <div v-if="isOpen" :style="{ ...contentStyle, zIndex: content.dialogZIndex }" class="ww-dialog">
-                <wwElement v-bind="content.contentElement" role="dialog" />
+            <div v-if="isOpen">
+                <wwElement
+                    v-bind="content.contentElement"
+                    :style="{ ...contentStyle, zIndex: content.dialogZIndex }"
+                    role="dialog"
+                    class="ww-dialog"
+                />
             </div>
         </template>
     </div>
