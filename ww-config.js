@@ -231,7 +231,7 @@ export default {
             bindable: true,
         },
         slideInDirection: {
-            hidden: content => content.animation !== 'slide-in',
+            hidden: content => content.animation !== 'slide-in' || content.animation === null,
             label: {
                 en: 'Direction',
                 fr: 'Direction',
@@ -274,7 +274,7 @@ export default {
             },
             /* wwEditor:end */
             bindable: true,
-            hidden: content => content.animation === 'none',
+            hidden: content => content.animation === null,
         },
         animationEasing: {
             label: {
@@ -301,7 +301,9 @@ export default {
             /* wwEditor:end */
             defaultValue: 'linear',
             bindable: true,
+            hidden: content => content.animation === null,
         },
+
         preventScroll: {
             label: {
                 en: 'Prevent Scrolling',
@@ -455,6 +457,28 @@ export default {
                 tooltip:
                     "If this is true, all interactions are disabled outside the dialog content. If you have this off, but have an overlay, you won't be able to interact with outside elements.",
             },
+        },
+        dialogZIndex: {
+            label: 'Z-index',
+            type: 'Number',
+            options: {
+                min: 0,
+                max: 999,
+            },
+            defaultValue: 2,
+            responsive: true,
+            states: true,
+            classes: true,
+            bindable: true,
+            /* wwEditor:start */
+            bindingValidation: {
+                type: 'number',
+                tooltip: 'A number that defines the Z-index of the dialog.',
+            },
+            propertyHelp: {
+                tooltip: 'Z-index can help you position the dialog over other elements on your page.',
+            },
+            hidden: content => content.animation === null,
         },
         triggerElement: {
             hidden: true,

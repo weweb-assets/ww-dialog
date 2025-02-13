@@ -39,7 +39,6 @@ export function useDialogStyle() {
                 style.left = customPositionX;
                 break;
             default:
-                // Center horizontally
                 style.left = '50%';
                 style['--translate-x'] = '-50%';
                 break;
