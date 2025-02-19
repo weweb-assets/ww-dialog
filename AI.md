@@ -60,7 +60,7 @@ keywords: dialog, modal, side sheet, position, animation, behavior
    - Avoid generating a dialog unless the user explicitly asks for it (e.g for dashboards or other examples, just generate a button that does nothing)
    - The elements inside the dialog popup and their variables do not exist when the dialog is closed. If you want to access them in a formula or workflow, you need to open the dialog first.
    - The elements inside the dialog don't have access to any external `context`. Use a global variable to pass data inside to them.
-   - For a notification do not use ww-dialog. Use a ww-div in absolute or fixed position.
+   - DOT NOT USE `ww-dialog` TO CREATE A NOTIFICATION. Use a `ww-div` in absolute or fixed position with a global variable to store display status
      
 Example:
 <elements>
