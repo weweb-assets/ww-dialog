@@ -5,6 +5,13 @@ export default {
             fr: 'Dialog',
         },
         icon: 'cursor-click',
+        hint: () => {
+            return {
+                type: 'brand',
+                header: 'Opening the dialog',
+                text: "If you want to open the dialog from outside the trigger container. Create a workflow with an action 'Execute component action' and select the name of your dialog.",
+            };
+        },
     },
     inherit: {
         type: 'ww-layout',
