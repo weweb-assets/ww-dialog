@@ -8,8 +8,8 @@ export default {
         hint: () => {
             return {
                 type: 'brand',
-                header: 'Opening the dialog',
-                text: "If you want to open the dialog from outside the trigger container. Create a workflow with an action 'Execute component action' and select the name of your dialog.",
+                header: 'Opening the dialog externally',
+                text: "Opening the dialog outside the trigger container is done via a workflow action 'Execute component action' with the name of the dialog",
             };
         },
     },
