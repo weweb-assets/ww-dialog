@@ -27,7 +27,6 @@
                     ref="overlayElement"
                     v-bind="content.overlayElement"
                     role="dialog"
-                    :style="{ zIndex: content.dialogZIndex }"
                     @click="handleOverlayClick()"
                 />
             </template>
