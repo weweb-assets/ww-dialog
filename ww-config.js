@@ -9,7 +9,7 @@ export default {
             return {
                 type: 'brand',
                 header: 'Opening the dialog externally',
-                text: "Opening the dialog outside the trigger container is done via a workflow action 'Execute component action' with the name of the dialog",
+                text: "Use workflow action 'Execute component action' with the name of the dialog to open it externally.",
             };
         },
     },
