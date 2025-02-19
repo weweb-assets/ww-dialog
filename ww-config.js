@@ -9,13 +9,13 @@ export default {
             return [
                 {
                     type: 'brand',
-                    header: 'Opening the dialog externally',
-                    text: "Use workflow action 'Execute component action' with the name of the dialog to open it externally.",
+                    header: "Open the dialog externally by using workflow action 'Execute component action' with the correct dialog name",
+                    icon: '16/circle-info',
                 },
                 {
                     type: 'brand',
-                    header: 'Managing Z-index',
-                    text: "It's recommended to add the same Z-index to both content and overlay elements. Setting a Z-index on the dialog itself does not impact the content.",
+                    header: 'When using Z-index, apply it to both Content and Overlay elements',
+                    icon: '16/circle-info',
                 },
             ];
         },
