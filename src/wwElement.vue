@@ -16,7 +16,7 @@
             <template v-if="!isEditing">
                 <div v-if="content.clickOutsideCloses" class="pointer-capture" @click.stop="closeDialog()"></div>
                 <div
-                    v-else-if="content.preventInteractionsOutside && !content.overlay && !content.overlayClickCloses"
+                    v-else-if="content.preventInteractionsOutside && !content.overlay"
                     class="pointer-capture"
                     @click.stop="null"
                 ></div>

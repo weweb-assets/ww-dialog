@@ -6,11 +6,18 @@ export default {
         },
         icon: 'cursor-click',
         hint: () => {
-            return {
-                type: 'brand',
-                header: 'Opening the dialog externally',
-                text: "Use workflow action 'Execute component action' with the name of the dialog to open it externally.",
-            };
+            return [
+                {
+                    type: 'brand',
+                    header: 'Opening the dialog externally',
+                    text: "Use workflow action 'Execute component action' with the name of the dialog to open it externally.",
+                },
+                {
+                    type: 'brand',
+                    header: 'Managing Z-index',
+                    text: "It's recommended to add the same Z-index to both content and overlay elements. Setting a Z-index on the dialog itself does not impact the content.",
+                },
+            ];
         },
     },
     inherit: {
