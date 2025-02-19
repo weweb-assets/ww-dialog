@@ -9,12 +9,12 @@ export default {
             return [
                 {
                     type: 'brand',
-                    header: "Open the dialog externally by using workflow action 'Execute component action' with the correct dialog name",
+                    text: "Open the dialog externally by using workflow action 'Execute component action' with the correct dialog name",
                     icon: '16/circle-info',
                 },
                 {
                     type: 'brand',
-                    header: 'When using Z-index, apply it to both Content and Overlay elements',
+                    text: 'When working with Z-index, apply it to both Content and Overlay elements',
                     icon: '16/circle-info',
                 },
             ];
