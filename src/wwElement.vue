@@ -16,7 +16,7 @@
             <template v-if="!isEditing">
                 <div v-if="content.clickOutsideCloses" class="pointer-capture" @click.stop="closeDialog()"></div>
                 <div
-                    v-else-if="content.preventInteractionsOutside && !content.overlay && !content.overlayClickCloses"
+                    v-else-if="content.preventInteractionsOutside && !content.overlay"
                     class="pointer-capture"
                     @click.stop="null"
                 ></div>
@@ -27,7 +27,6 @@
                     ref="overlayElement"
                     v-bind="content.overlayElement"
                     role="dialog"
-                    :style="{ zIndex: content.dialogZIndex }"
                     @click="handleOverlayClick()"
                 />
             </template>

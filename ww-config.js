@@ -5,6 +5,20 @@ export default {
             fr: 'Dialog',
         },
         icon: 'cursor-click',
+        hint: () => {
+            return [
+                {
+                    type: 'brand',
+                    text: "Open the dialog externally by using workflow action 'Execute component action' with the correct dialog name",
+                    icon: '16/circle-info',
+                },
+                {
+                    type: 'brand',
+                    text: 'When working with Z-index, apply it to both Content and Overlay elements',
+                    icon: '16/circle-info',
+                },
+            ];
+        },
     },
     inherit: {
         type: 'ww-layout',
