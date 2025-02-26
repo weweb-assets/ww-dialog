@@ -144,9 +144,13 @@ export default {
             () => isOpen.value,
             newValue => {
                 if (props.content.preventScroll && !isEditing.value) {
-                    const overflowValue = newValue ? 'hidden' : 'auto';
-                    wwLib.getFrontDocument().body.style.overflow = overflowValue;
-                    wwLib.getFrontDocument().documentElement.style.overflow = overflowValue;
+                    if (newValue) {
+                        wwLib.getFrontDocument().body.style.overflow = 'hidden';
+                        wwLib.getFrontDocument().documentElement.style.overflow = 'hidden';
+                    } else {
+                        wwLib.getFrontDocument().body.style.removeProperty('overflow');
+                        wwLib.getFrontDocument().documentElement.style.removeProperty('overflow');
+                    }
                 }
                 if (newValue) {
                     addEscapeListener();
@@ -228,8 +232,8 @@ export default {
 
         onUnmounted(() => {
             removeEscapeListener();
-            wwLib.getFrontDocument().body.style.overflow = 'auto';
-            wwLib.getFrontDocument().documentElement.style.overflow = 'auto';
+            wwLib.getFrontDocument().body.style.removeProperty('overflow');
+            wwLib.getFrontDocument().documentElement.style.removeProperty('overflow');
         });
 
         return {
