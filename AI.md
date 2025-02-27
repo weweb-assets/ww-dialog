@@ -21,8 +21,6 @@ keywords: dialog, modal, side sheet, position, animation, behavior
 3. **Properties:**
    - `type`: `'none' | 'modal' | 'sheet'` - Type of dialog to display. Default: `'modal'`.
    - `sideModal`: `'left' | 'center' | 'right' | 'custom'` - Side position for modals. Default: `'center'`.
-   - `trigger`: `boolean` - Whether to display a trigger component. Default: `true`. In this case `ww-dialog` MUST be placed in the page.
-   - `triggerClickOpens`: `boolean` - Whether clicking the trigger should open the dialog. Default: `true`.
    - `customPositionX`: `string` - Horizontal position for custom modal positioning.
    - `customPositionY`: `string` - Vertical position for custom modal positioning.
    - `sideSheet`: `'left' | 'top' | 'right' | 'bottom'` - Side position for sheets. Default: `'top'`.
@@ -39,9 +37,9 @@ keywords: dialog, modal, side sheet, position, animation, behavior
    - `preventInteractionsOutside`: `boolean` - Whether to prevent interactions outside the dialog. Default: `true`.
 
 4. **Children Elements:**
-   - `triggerElement`: `ww-div` - Trigger element to open the dialog. Mandatory if the `trigger` is `true`
-   - `contentElement`: `ww-div` - Content element to display inside the dialog. Mandatory
-   - `overlayElement`: `ww-div` - Overlay element behind the dialog. Mandatory
+   - `triggerElement`: `ww-div` - Trigger element to open the dialog. MANDATORY.
+   - `contentElement`: `ww-div` - Content element to display inside the dialog. MANDATORY.
+   - `overlayElement`: `ww-div` - Overlay element behind the dialog. MANDATORY.
 
 5. **Trigger events (use as workflow triggers):**
    - `change`: On open status change
@@ -57,7 +55,6 @@ keywords: dialog, modal, side sheet, position, animation, behavior
    - `open`: READ ONLY. Open status. Access using `variables['element_uid-open']`
 
 8. **Special Features:**
-   - The `ww-dialog` must always be placed somewhere in the page, even without a trigger element.
    - You must put a greater z-index on the content than on the overlay, otherwise the overlay won't show
    - When user wants you to make an element open a dialog, you must remove the existing element and create a dialog with a trigger element that contains the element.
    - Avoid generating a dialog unless the user explicitly asks for it (e.g for dashboards or other examples, just generate a button that does nothing)
